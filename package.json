@@ -1,0 +1,28 @@
+{
+  "name": "datascreen",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "dev-build": "vue-cli-service build --mode devbuild",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/cli": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
+    "compression-webpack-plugin": "^3.1.0",
+    "less": "^3.0.0",
+    "less-loader": "^5.0.0",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-bundle-analyzer": "^3.8.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
