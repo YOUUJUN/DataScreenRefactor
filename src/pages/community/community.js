@@ -1,8 +1,10 @@
 import Vue from 'vue'
-import Home from './Test.vue'
+import Home from './Community.vue'
 
-//全局组件
+import { Button } from 'element-ui';
 
+Vue.prototype.$ELEMENT = { size: 'small'};
+Vue.use(Button);
 
 //eventBus
 let bus = new Vue;

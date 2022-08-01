@@ -10,13 +10,27 @@
   <link href="<%= item.css %>" rel="stylesheet" />
   <% }}) %>
 
-  <title>Developer</title>
+  <title>大屏数据化</title>
 </head>
 <body>
 <noscript>
   <strong>We're sorry but web doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
 </noscript>
 <div id="app"></div>
+
+<!-- amap -->
+<script type="text/javascript">
+  window._AMapSecurityConfig = {
+      // 线上环境 --- 如何在服务器上配置（https://lbs.amap.com/api/javascript-api/guide/abc/prepare）
+      // serviceHost: "您的代理服务器域名或地址/_AMapService",
+      // // 例如 ：serviceHost:'http://1.1.1.1:80/_AMapService',
+      //开发环境使用的安全密钥
+      securityJsCode: '37c21ed2d10dd6d2b7202f39afcda289',
+  };
+</script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=4c40948fc0c5ab33e4eb4f00f51febfb&plugin=AMap.MarkerCluster"></script>
+
+
 
 <% htmlWebpackPlugin.options.cdnConfig.forEach(function(item){ if(item.js && !htmlWebpackPlugin.options.onlyCss){ %>
 <script type="text/javascript" src="<%= item.js %>"></script>
