@@ -100,11 +100,11 @@
                 <div class="card-wrap">
                     <div class="card">
                         <div class="card-head">
-
+                            <slot name="DataStatisticsHead"></slot>
                         </div>
 
                         <div class="card-body">
-                            
+                            <slot name="DataStatisticsBody"></slot>
                         </div>
                     </div>
                 </div>
@@ -124,11 +124,11 @@
                 <div class="card-wrap">
                     <div class="card">
                         <div class="card-head">
-
+                            <slot name="DeviceAlertHead"></slot>
                         </div>
 
                         <div class="card-body">
-                            
+                            <slot name="DeviceAlertBody"></slot>
                         </div>
                     </div>
                 </div>

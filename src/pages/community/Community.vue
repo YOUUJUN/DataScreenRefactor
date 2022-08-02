@@ -33,7 +33,19 @@
                 <device-manage-body></device-manage-body>
             </template>
 
+            <template v-slot:DataStatisticsHead>
+                <data-statistics-head></data-statistics-head>
+            </template>
+            <template v-slot:DataStatisticsBody>
+                <data-statistics-body></data-statistics-body>
+            </template>
 
+            <template v-slot:DeviceAlertHead>
+                <device-alert-head></device-alert-head>
+            </template>
+            <template v-slot:DeviceAlertBody>
+                <device-alert-body></device-alert-body>
+            </template>
         </layout>
     </main>
 </template>
@@ -43,14 +55,30 @@ const MapPanel = () => import("./modules/Map.vue");
 const ElderInfoHead = () => import("./modules/leftPanel/ElderInfo/Head.vue");
 const ElderInfoBody = () => import("./modules/leftPanel/ElderInfo/Body.vue");
 
-const HealthCheckHead = () => import("./modules/leftPanel/HealthCheck/Head.vue");
-const HealthCheckBody = () => import("./modules/leftPanel/HealthCheck/Body.vue");
+const HealthCheckHead = () =>
+    import("./modules/leftPanel/HealthCheck/Head.vue");
+const HealthCheckBody = () =>
+    import("./modules/leftPanel/HealthCheck/Body.vue");
 
-const SafetyCheckHead = () => import("./modules/leftPanel/SafetyCheck/Head.vue");
-const SafetyCheckBody = () => import("./modules/leftPanel/SafetyCheck/Body.vue");
+const SafetyCheckHead = () =>
+    import("./modules/leftPanel/SafetyCheck/Head.vue");
+const SafetyCheckBody = () =>
+    import("./modules/leftPanel/SafetyCheck/Body.vue");
 
-const DeviceManageHead = () => import("./modules/centerPanel/DeviceManage/Head.vue");
-const DeviceManageBody = () => import("./modules/centerPanel/DeviceManage/Body.vue");
+const DeviceManageHead = () =>
+    import("./modules/centerPanel/DeviceManage/Head.vue");
+const DeviceManageBody = () =>
+    import("./modules/centerPanel/DeviceManage/Body.vue");
+
+const DataStatisticsHead = () =>
+    import("./modules/rightPanel/DataStatistics/Head.vue");
+const DataStatisticsBody = () =>
+    import("./modules/rightPanel/DataStatistics/Body.vue");
+
+const DeviceAlertHead = () =>
+    import("./modules/rightPanel/DeviceAlert/Head.vue");
+const DeviceAlertBody = () =>
+    import("./modules/rightPanel/DeviceAlert/Body.vue");
 
 export default {
     components: {
@@ -66,7 +94,13 @@ export default {
         SafetyCheckBody,
 
         DeviceManageHead,
-        DeviceManageBody
+        DeviceManageBody,
+
+        DataStatisticsHead,
+        DataStatisticsBody,
+
+        DeviceAlertHead,
+        DeviceAlertBody,
     },
     data() {},
 
@@ -152,39 +186,115 @@ html {
     box-sizing: border-box;
 }
 
+p,
+ul,
+li {
+    padding: 0;
+    margin: 0;
+}
+
 .hide {
     display: none;
+}
+
+.fadeIn {
+    animation: fadeIn 2s linear forwards;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        height: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        height: 0.475rem;
+        transform: translateY(0);
+    }
 }
 </style>
 
 <style>
-.el-dialog.lucency-dlg{
+/*---lucency-dlg---*/
+.el-dialog.lucency-dlg {
     display: flex;
     flex-direction: column;
     width: 10.425rem;
     height: 6.25rem;
     background: none;
     margin-top: 11vh !important;
-    box-shadow : none;
-    /* background: url("~@/static/Cut-diagram/healthy-jc3.png");
-	background-repeat: no-repeat;
-	background-size: 100% 100%; */
+    box-shadow: none;
 }
 
-.el-dialog.lucency-dlg .el-dialog__header{
-    flex:none;
-    height: .625rem;
+.el-dialog.lucency-dlg .el-dialog__header {
+    flex: none;
+    height: 0.625rem;
     background: url("~@/static/cut/dlg-top.png");
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     padding: 0;
 }
 
-.el-dialog.lucency-dlg .el-dialog__body{
-    flex:auto;
+.el-dialog.lucency-dlg .el-dialog__body {
+    flex: auto;
     background: url("~@/static/cut/dlg-bottom.png");
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/*---lucency-table---*/
+
+.lucency-table.el-table tr {
+	background: none;
+}
+
+.lucency-table.el-table th.el-table__cell{
+    background: none;
+}
+
+.el-table td.el-table__cell, .el-table th.el-table__cell.is-leaf {
+	border:none !important;
+}
+
+.lucency-table.el-table, .el-table__expanded-cell {
+	background: none;
+}
+
+.lucency-table.el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+	background: none;
+}
+
+.el-table--enable-row-hover .el-table__body tr:hover > td.el-table__cell {
+	background: none !important;
+}
+
+.lucency-table .el-table__row{
+    background-color: rgba(5, 27, 50, 0.5) !important;
+}
+
+.lucency-table .el-table__row.el-table__row--striped{
+    background:none !important;
+}
+
+.lucency-table.el-table::before {
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 0;
+}
+
+.lucency-table.el-table .el-table__row{
+    color: #faaf63;
+    text-align: center;
+}
+
+.lucency-table.el-table thead{
+    color: #2AD9E4;
+    font-size: 16px;
+}
+
+.lucency-table.el-table .el-table__cell{
+    text-align: center;
 }
 
 
