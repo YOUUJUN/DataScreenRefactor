@@ -8,10 +8,32 @@
             <template v-slot:ElderInfoHead>
                 <elder-info-head></elder-info-head>
             </template>
-
             <template v-slot:ElderInfoBody>
                 <elder-info-body></elder-info-body>
             </template>
+
+            <template v-slot:HealthCheckHead>
+                <health-check-head></health-check-head>
+            </template>
+            <template v-slot:HealthCheckBody>
+                <health-check-body></health-check-body>
+            </template>
+
+            <template v-slot:SafetyCheckHead>
+                <safety-check-head></safety-check-head>
+            </template>
+            <template v-slot:SafetyCheckBody>
+                <safety-check-body></safety-check-body>
+            </template>
+
+            <template v-slot:DeviceManageHead>
+                <device-manage-head></device-manage-head>
+            </template>
+            <template v-slot:DeviceManageBody>
+                <device-manage-body></device-manage-body>
+            </template>
+
+
         </layout>
     </main>
 </template>
@@ -21,12 +43,30 @@ const MapPanel = () => import("./modules/Map.vue");
 const ElderInfoHead = () => import("./modules/leftPanel/ElderInfo/Head.vue");
 const ElderInfoBody = () => import("./modules/leftPanel/ElderInfo/Body.vue");
 
+const HealthCheckHead = () => import("./modules/leftPanel/HealthCheck/Head.vue");
+const HealthCheckBody = () => import("./modules/leftPanel/HealthCheck/Body.vue");
+
+const SafetyCheckHead = () => import("./modules/leftPanel/SafetyCheck/Head.vue");
+const SafetyCheckBody = () => import("./modules/leftPanel/SafetyCheck/Body.vue");
+
+const DeviceManageHead = () => import("./modules/centerPanel/DeviceManage/Head.vue");
+const DeviceManageBody = () => import("./modules/centerPanel/DeviceManage/Body.vue");
+
 export default {
     components: {
         layout,
         MapPanel,
         ElderInfoHead,
         ElderInfoBody,
+
+        HealthCheckHead,
+        HealthCheckBody,
+
+        SafetyCheckHead,
+        SafetyCheckBody,
+
+        DeviceManageHead,
+        DeviceManageBody
     },
     data() {},
 
@@ -103,11 +143,11 @@ export default {
 
 body,
 html {
-    position: relative;
+    position: fixed;
     margin: 0;
     padding: 0;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     font-size: 80px;
     box-sizing: border-box;
 }
@@ -116,6 +156,42 @@ html {
     display: none;
 }
 </style>
+
+<style>
+.el-dialog.lucency-dlg{
+    display: flex;
+    flex-direction: column;
+    width: 10.425rem;
+    height: 6.25rem;
+    background: none;
+    margin-top: 11vh !important;
+    box-shadow : none;
+    /* background: url("~@/static/Cut-diagram/healthy-jc3.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%; */
+}
+
+.el-dialog.lucency-dlg .el-dialog__header{
+    flex:none;
+    height: .625rem;
+    background: url("~@/static/cut/dlg-top.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+    padding: 0;
+}
+
+.el-dialog.lucency-dlg .el-dialog__body{
+    flex:auto;
+    background: url("~@/static/cut/dlg-bottom.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+
+
+</style>
+
+
 
 <style scoped>
 #app {

@@ -53,11 +53,11 @@
                 <div class="card-wrap">
                     <div class="card">
                         <div class="card-head">
-
+                            <slot name="HealthCheckHead"></slot>
                         </div>
 
                         <div class="card-body">
-                            
+                            <slot name="HealthCheckBody"></slot>
                         </div>
                     </div>
                 </div>
@@ -65,11 +65,11 @@
                 <div class="card-wrap">
                     <div class="card">
                         <div class="card-head">
-
+                            <slot name="SafetyCheckHead"></slot>
                         </div>
 
                         <div class="card-body">
-                            
+                            <slot name="SafetyCheckBody"></slot>
                         </div>
                     </div>
                 </div>
@@ -82,11 +82,11 @@
                     <div class="inner-card">
 
                         <div class="inner-card-head">
-
+                            <slot name="DeviceManageHead"></slot>
                         </div>
 
                         <div class="inner-card-body">
-                            
+                            <slot name="DeviceManageBody"></slot>
                         </div>
                         
                     </div>
@@ -180,6 +180,11 @@ export default {
 }
 
 .body-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+    overflow: hidden;
     flex: auto;
 }
 
@@ -309,13 +314,6 @@ export default {
 <style scoped>
 /*---页面主体---*/
 
-.body-wrap {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 100%;
-}
-
 .body-left {
     flex: none;
     width: 5.3125rem;
@@ -396,7 +394,7 @@ export default {
     flex:none;
     width: 100%;
     height: .625rem;
-    background-image: url("~@/static/src/img/card-top.png");
+    background-image: url("~@/static/cut/main-center-top.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
@@ -404,7 +402,7 @@ export default {
 .inner-card-body{
     flex:auto;
     width: 100%;
-    background-image: url("~@/static/src/img/card-bottom.png");
+    background-image: url("~@/static/cut/main-center-bottom.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
