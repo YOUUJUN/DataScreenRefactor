@@ -65,10 +65,10 @@ export default {
                     },
                 },
                 grid: {
-                    top: "30%",
+                    top: "25%",
                     left: "6%",
                     right: "4%",
-                    bottom: "8%",
+                    bottom: "10%",
                     containLabel: false,
                 },
                 xAxis: [

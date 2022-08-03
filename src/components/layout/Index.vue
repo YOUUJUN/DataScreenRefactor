@@ -136,11 +136,11 @@
                 <div class="card-wrap">
                     <div class="card">
                         <div class="card-head">
-
+                            <slot name="SafetyAlarmHead"></slot>
                         </div>
 
                         <div class="card-body">
-                            
+                            <slot name="SafetyAlarmBody"></slot>
                         </div>
                     </div>
                 </div>
@@ -350,12 +350,9 @@ export default {
     flex-direction: column;
     width: 100%;
     height: 100%;
-    /* background-image: url("~@/static/src/img/elderly-jbxi3.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%; */
 }
 
-.card-head{
+.body-left .card-head{
     flex:none;
     width: 100%;
     height: .625rem;
@@ -364,10 +361,27 @@ export default {
     background-size: 100% 100%;
 }
 
-.card-body{
+.body-left .card-body{
     flex:auto;
     width: 100%;
     background-image: url("~@/static/src/img/card-bottom.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.body-right .card-head{
+    flex:none;
+    width: 100%;
+    height: .625rem;
+    background-image: url("~@/static/cut/main-right-top.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.body-right .card-body{
+    flex:auto;
+    width: 100%;
+    background-image: url("~@/static/cut/main-right-bottom.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }

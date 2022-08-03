@@ -46,6 +46,13 @@
             <template v-slot:DeviceAlertBody>
                 <device-alert-body></device-alert-body>
             </template>
+
+            <template v-slot:SafetyAlarmHead>
+                <safety-alarm-head></safety-alarm-head>
+            </template>
+            <template v-slot:SafetyAlarmBody>
+                <safety-alarm-body></safety-alarm-body>
+            </template>
         </layout>
     </main>
 </template>
@@ -80,6 +87,11 @@ const DeviceAlertHead = () =>
 const DeviceAlertBody = () =>
     import("./modules/rightPanel/DeviceAlert/Body.vue");
 
+const SafetyAlarmHead = () =>
+    import("./modules/rightPanel/SafetyAlarm/Head.vue");
+const SafetyAlarmBody = () =>
+    import("./modules/rightPanel/SafetyAlarm/Body.vue");
+
 export default {
     components: {
         layout,
@@ -101,6 +113,9 @@ export default {
 
         DeviceAlertHead,
         DeviceAlertBody,
+
+        SafetyAlarmHead,
+        SafetyAlarmBody,
     },
     data() {},
 
@@ -245,60 +260,134 @@ li {
 /*---lucency-table---*/
 
 .lucency-table.el-table tr {
-	background: none;
-}
-
-.lucency-table.el-table th.el-table__cell{
     background: none;
 }
 
-.el-table td.el-table__cell, .el-table th.el-table__cell.is-leaf {
-	border:none !important;
+.lucency-table.el-table th.el-table__cell {
+    background: none;
 }
 
-.lucency-table.el-table, .el-table__expanded-cell {
-	background: none;
+.el-table td.el-table__cell,
+.el-table th.el-table__cell.is-leaf {
+    border: none !important;
 }
 
-.lucency-table.el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
-	background: none;
+.lucency-table.el-table,
+.el-table__expanded-cell {
+    background: none;
+}
+
+.lucency-table.el-table--striped
+    .el-table__body
+    tr.el-table__row--striped
+    td.el-table__cell {
+    background: none;
 }
 
 .el-table--enable-row-hover .el-table__body tr:hover > td.el-table__cell {
-	background: none !important;
+    background: none !important;
 }
 
-.lucency-table .el-table__row{
+.lucency-table .el-table__row {
     background-color: rgba(5, 27, 50, 0.5) !important;
 }
 
-.lucency-table .el-table__row.el-table__row--striped{
-    background:none !important;
+.lucency-table .el-table__row.el-table__row--striped {
+    background: none !important;
 }
 
 .lucency-table.el-table::before {
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	height: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0;
 }
 
-.lucency-table.el-table .el-table__row{
+.lucency-table.el-table .el-table__row {
     color: #faaf63;
     text-align: center;
 }
 
-.lucency-table.el-table thead{
-    color: #2AD9E4;
+.lucency-table.el-table thead {
+    color: #2ad9e4;
     font-size: 16px;
 }
 
-.lucency-table.el-table .el-table__cell{
+.lucency-table.el-table .el-table__cell {
     text-align: center;
 }
 
+/*---lucency-page---*/
+.lucency-page.el-pagination button:disabled {
+    background: none;
+}
 
+.lucency-page.el-pagination .btn-next,
+.lucency-page.el-pagination .btn-prev {
+    background: none;
+}
 
+.el-pagination .btn-prev > i {
+    font-size: 0;
+    width: 0.225rem;
+    height: 0.225rem;
+    padding: 0.0375rem;
+    border-radius: 50%;
+    background-image: url(~@/static/Cut-diagram/pager_button_left_enable.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.lucency-page.el-pagination .btn-next > i {
+    font-size: 0;
+    width: 0.225rem;
+    height: 0.225rem;
+    padding: 0.0375rem;
+    border-radius: 50%;
+    background-image: url(~@/static/Cut-diagram/pager_button_right_enable.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.lucency-page.el-pagination .el-pager li {
+    background: none;
+}
+
+.lucency-page.el-pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #a3ccfa;
+    margin-top: 0.2rem;
+}
+
+.lucency-page.el-pagination .btn-prev:disabled > i {
+    font-size: 0;
+    background-image: url("~@/static/Cut-diagram/pager_button_left_disable.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.lucency-page.el-pagination .btn-next:disabled > i {
+    font-size: 0;
+    background-image: url("~@/static/Cut-diagram/pager_button_right_disable.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/*---lucency-btn---*/
+.lucency-btn.el-button {
+    width: 1rem;
+    border-radius: 0.15rem;
+    border-color: transparent;
+    background-image: linear-gradient(to right, #2ad7e4, #42affe);
+    color: #fff;
+    font-size: 0.15rem;
+    cursor: pointer;
+    background-color: unset;
+    padding: 0.08rem;
+}
 </style>
 
 

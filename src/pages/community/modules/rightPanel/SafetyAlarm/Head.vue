@@ -2,7 +2,7 @@
     <div class="card-head-inner">
         <div class="card-head-inner-title">
             <i class="custom-icon custom-icon-youshuangjiantou"></i>
-            <span>设备预警</span>
+            <span>安全告警</span>
         </div>
         <img @click="openDlg()" class="card-head-inner-more" src="~@/static/Cut-diagram/control_picture.png" />
 
