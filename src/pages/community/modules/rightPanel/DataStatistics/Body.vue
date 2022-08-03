@@ -260,8 +260,8 @@ export default {
     flex-wrap: wrap;
     flex-direction: column;
     width: 100%;
-    height: 1.7875rem;
-    margin-top: 0.15rem;
+    height: 1.65rem;
+    margin-top: 0.13rem;
 }
 
 .box-wrap .box {

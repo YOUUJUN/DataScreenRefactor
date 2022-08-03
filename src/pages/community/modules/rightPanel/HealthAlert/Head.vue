@@ -2,9 +2,9 @@
     <div class="card-head-inner">
         <div class="card-head-inner-title">
             <i class="custom-icon custom-icon-youshuangjiantou"></i>
-            <span>健康监测</span>
+            <span>健康预警</span>
         </div>
-        <img @click="openDlg()" class="card-head-inner-more" src="~@/static/Cut-diagram/cakansuju.png" />
+        <img @click="openDlg()" class="card-head-inner-more" src="~@/static/Cut-diagram/control_picture.png" />
 
 
         <dlg :visible.sync="visible"></dlg>
@@ -60,7 +60,7 @@ export default {
 }
 
 .card-head-inner-more{
-    height: .23rem;
+    height:.16rem;
     width: auto;
     cursor:pointer;
 }

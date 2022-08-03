@@ -60,6 +60,8 @@ export default {
 }
 
 .card-head-inner-more{
+    height: .23rem;
+    width: auto;
     cursor:pointer;
 }
 </style>

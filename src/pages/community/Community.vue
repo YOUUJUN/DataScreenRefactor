@@ -53,6 +53,13 @@
             <template v-slot:SafetyAlarmBody>
                 <safety-alarm-body></safety-alarm-body>
             </template>
+
+            <template v-slot:HealthAlertHead>
+                <health-alert-head></health-alert-head>
+            </template>
+            <template v-slot:HealthAlertBody>
+                <health-alert-body></health-alert-body>
+            </template>
         </layout>
     </main>
 </template>
@@ -92,6 +99,11 @@ const SafetyAlarmHead = () =>
 const SafetyAlarmBody = () =>
     import("./modules/rightPanel/SafetyAlarm/Body.vue");
 
+const HealthAlertHead = () =>
+    import("./modules/rightPanel/HealthAlert/Head.vue");
+const HealthAlertBody = () =>
+    import("./modules/rightPanel/HealthAlert/Body.vue");
+
 export default {
     components: {
         layout,
@@ -116,6 +128,9 @@ export default {
 
         SafetyAlarmHead,
         SafetyAlarmBody,
+
+        HealthAlertHead,
+        HealthAlertBody,
     },
     data() {},
 
@@ -255,6 +270,7 @@ li {
     background: url("~@/static/cut/dlg-bottom.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    padding:.2rem;
 }
 
 /*---lucency-table---*/
@@ -388,7 +404,41 @@ li {
     background-color: unset;
     padding: 0.08rem;
 }
+
+/*---lucency-title---*/
+
+.lucency-title{
+    display: flex;
+    width:100%;
+}
+
+.lucency-title > span{
+    position: relative;
+    line-height: 0.3rem;
+    padding-left: 0.12rem;
+    font-size: .175rem;
+	font-family: Source Han Sans CN;
+	font-weight: 800;
+	color: #2AD9E4;
+}
+
+.lucency-title > span::before{
+    content: "";
+    position: absolute;
+    top: 0.04rem;
+    left: -0.0625rem;
+    width: .0625rem;
+	height: .1875rem;
+	background-image: linear-gradient(to top, #209CFF, #68E0CF);
+	border-radius: 0.02rem;
+}
+
+
+
+
 </style>
+
+
 
 
 

@@ -112,11 +112,11 @@
                 <div class="card-wrap">
                     <div class="card">
                         <div class="card-head">
-
+                            <slot name="HealthAlertHead"></slot>
                         </div>
 
                         <div class="card-body">
-                            
+                            <slot name="HealthAlertBody"></slot>
                         </div>
                     </div>
                 </div>
@@ -321,6 +321,7 @@ export default {
     overflow: auto;
     display: flex;
     flex-direction: column;
+    padding-left: .18rem;
 }
 
 .body-center {
@@ -335,6 +336,7 @@ export default {
     overflow: auto;
     display: flex;
     flex-direction: column;
+    padding-right: .18rem;
 }
 
 /*---left---*/
@@ -372,7 +374,7 @@ export default {
 .body-right .card-head{
     flex:none;
     width: 100%;
-    height: .625rem;
+    height: .525rem;
     background-image: url("~@/static/cut/main-right-top.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
