@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = "http://odowork.fanmiot.cn";
+const baseURL = "/datav";
 
 /**
  * 创建axios实例

@@ -15,7 +15,7 @@ const path = require("path");
 
 const webpack = require("webpack");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const productionGzipExtensions = ["js", "css"];
 const buildPageSync = () => {
@@ -129,6 +129,21 @@ module.exports = function() {
             port: 8080,
             hotOnly: true,
             open: false, //是否自动打开浏览器
+            proxy: {
+                "/datav": {
+                    target: `http://localhost:9098`,
+                    // pathRewrite: {
+                    //     ["^" + "/datav"]: "",
+                    // },
+                    ws: true,
+                    secure: false,
+                    changOrigin: true, //是否开启代理
+                    pathRewrite: {
+                        //  /api开头的请求会去到target下请求
+                        "^/datav": "", //   替换/api 为空字符
+                    },
+                },
+            },
         },
         productionSourceMap: true, //开启后出错的时候，除错工具将直接显示原始代码，而不是转换后的代码。关闭可以减少打包体积
         configureWebpack: {

@@ -177,6 +177,7 @@ export default {
 
 .head-wrap {
     flex: none;
+    z-index: 2;
 }
 
 .body-wrap {
@@ -194,7 +195,7 @@ export default {
     bottom:0;
     left:0;
     right:0;
-    z-index: -999;
+    z-index: 1;
 }
 
 /*---页头---*/
@@ -322,11 +323,13 @@ export default {
     display: flex;
     flex-direction: column;
     padding-left: .18rem;
+    z-index: 2;
 }
 
 .body-center {
     flex: auto;
     align-self: flex-end;
+    z-index: 2;
 }
 
 .body-right {
@@ -337,6 +340,7 @@ export default {
     display: flex;
     flex-direction: column;
     padding-right: .18rem;
+    z-index: 2;
 }
 
 /*---left---*/

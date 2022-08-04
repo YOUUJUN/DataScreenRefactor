@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import request from "@/utils/web";
 import { postAction } from "@/api/manage";
 
 export default {
@@ -120,12 +121,16 @@ export default {
         },
 
         getData(currentPage) {
-            postAction(
-                `http://odowork.fanmiot.cn/datav/fm.warning/11/${currentPage}`,
-                {
-                    alarm_type: "equ_alarm",
-                }
-            )
+            request({
+                url: `/datav/fm.warning/11/${currentPage}`,
+                method: "post",
+                data: {
+                    alarm_type: "sec_alarm",
+                },
+                headers: {
+                    "content-type": "application/x-www-form-urlencoded",
+                },
+            })
                 .then((res) => {
                     console.log("res", res);
                 })

@@ -17,7 +17,6 @@
                     class="card-head-inner-more"
                     src="~@/static/Cut-diagram/guanbi.png"
                 />
-                
             </div>
         </template>
 
@@ -37,10 +36,7 @@
             </el-table-column>
             <el-table-column label="操作" width="100">
                 <template slot-scope="scope">
-                    <el-button
-                        size="mini"
-                        class="lucency-btn"
-                        @click=""
+                    <el-button size="mini" class="lucency-btn" @click=""
                         >立即处理</el-button
                     >
                 </template>
@@ -58,6 +54,7 @@
 </template>
 
 <script>
+import request from "@/utils/web";
 import { postAction } from "@/api/manage";
 
 export default {
@@ -120,12 +117,16 @@ export default {
         },
 
         getData(currentPage) {
-            postAction(
-                `http://odowork.fanmiot.cn/datav/fm.warning/11/${currentPage}`,
-                {
+            request({
+                url: `/datav/fm.warning/11/${currentPage}`,
+                method: "post",
+                data: {
                     alarm_type: "equ_alarm",
-                }
-            )
+                },
+                headers: {
+                    "content-type": "application/x-www-form-urlencoded",
+                },
+            })
                 .then((res) => {
                     console.log("res", res);
                 })
@@ -160,7 +161,7 @@ export default {
     font-size: 0.25rem;
 }
 
-.card-head-inner-more{
-    cursor:pointer;
+.card-head-inner-more {
+    cursor: pointer;
 }
 </style>
