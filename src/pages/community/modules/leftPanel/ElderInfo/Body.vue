@@ -2,22 +2,22 @@
     <div class="card-body-inner">
         <div class="fingernail-wrap">
             <div class="fingernail bg1">
-                <div class="fingernail-top">13</div>
+                <div class="fingernail-top">{{fingernailData.people_count}}</div>
                 <div class="fingernail-bottom">老人总数</div>
             </div>
 
             <div class="fingernail bg2">
-                <div class="fingernail-top">3</div>
+                <div class="fingernail-top">{{fingernailData.empty_nest_elderly}}</div>
                 <div class="fingernail-bottom">空巢老人数</div>
             </div>
 
             <div class="fingernail bg3">
-                <div class="fingernail-top">1</div>
+                <div class="fingernail-top">{{fingernailData.alone_elderly}}</div>
                 <div class="fingernail-bottom">独居老人数</div>
             </div>
 
             <div class="fingernail bg4">
-                <div class="fingernail-top">2</div>
+                <div class="fingernail-top">{{fingernailData.disable_elderly}}</div>
                 <div class="fingernail-bottom">失能老人数</div>
             </div>
         </div>
@@ -33,7 +33,19 @@
 <script>
 export default {
     data() {
-        return {};
+        return {
+            fingernailData : {},
+        };
+    },
+
+    created(){
+        let {people_count} = box1;
+        this.fingernailData = Object.assign({}, {
+            people_count,
+            empty_nest_elderly : box1.res.空巢老人,
+            alone_elderly : box1.res.独居老人,
+            disable_elderly : box1.res.失能老人,
+        })
     },
 
     mounted() {

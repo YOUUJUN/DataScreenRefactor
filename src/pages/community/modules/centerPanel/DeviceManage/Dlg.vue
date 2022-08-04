@@ -32,7 +32,7 @@
                             alt=""
                         />
                         <div class="fingernail-right">
-                            <span class="p1">4</span>
+                            <span class="p1">{{fingernailData.gateway_device}}</span>
                             <span class="p2">网关主机</span>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                             alt=""
                         />
                         <div class="fingernail-right">
-                            <span class="p1">4</span>
+                            <span class="p1">{{fingernailData.personal_emerg_button}}</span>
                             <span class="p2">紧急按钮</span>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                             alt=""
                         />
                         <div class="fingernail-right">
-                            <span class="p1">4</span>
+                            <span class="p1">{{fingernailData.fire_sensor}}</span>
                             <span class="p2">烟雾传感器</span>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                             alt=""
                         />
                         <div class="fingernail-right">
-                            <span class="p1">4</span>
+                            <span class="p1">{{fingernailData.gas_sensor}}</span>
                             <span class="p2">燃气传感器</span>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                             alt=""
                         />
                         <div class="fingernail-right">
-                            <span class="p1">4</span>
+                            <span class="p1">{{fingernailData.water_flow_sensor}}</span>
                             <span class="p2">水流传感器</span>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                             alt=""
                         />
                         <div class="fingernail-right">
-                            <span class="p1">4</span>
+                            <span class="p1">{{fingernailData.millimeter_wave}}</span>
                             <span class="p2">跌倒检测雷达</span>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                             alt=""
                         />
                         <div class="fingernail-right">
-                            <span class="p1">4</span>
+                            <span class="p1">{{fingernailData.vital_signs_millimeter_wave}}</span>
                             <span class="p2">体征检测雷达</span>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                             alt=""
                         />
                         <div class="fingernail-right">
-                            <span class="p1">4</span>
+                            <span class="p1">{{fingernailData.health_device}}</span>
                             <span class="p2">检测类设备</span>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                             alt=""
                         />
                         <div class="fingernail-right">
-                            <span class="p1">4</span>
+                            <span class="p1">{{fingernailData.external_device}}</span>
                             <span class="p2">外接设备</span>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                             alt=""
                         />
                         <div class="fingernail-right">
-                            <span class="p1">4</span>
+                            <span class="p1">{{fingernailData.other_device}}</span>
                             <span class="p2">其他设备</span>
                         </div>
                     </div>
@@ -159,7 +159,11 @@
                     <div class="lucency-title">
                         <span>类别统计</span>
                     </div>
-                    <div class="chart" id="righttu" ref="bottomRightChart"></div>
+                    <div
+                        class="chart"
+                        id="righttu"
+                        ref="bottomRightChart"
+                    ></div>
                 </div>
             </div>
         </section>
@@ -176,8 +180,41 @@ export default {
     },
 
     data() {
-        return {};
+        return {
+            fingernailData: {},
+        };
     },
+
+    created() {
+        let {
+            gateway_device,
+            personal_emerg_button,
+            fire_sensor,
+            gas_sensor,
+            water_flow_sensor,
+            millimeter_wave,
+            vital_signs_millimeter_wave,
+            health_device,
+            external_device,
+            other_device,
+        } = box8.gateway_device_count;
+        this.fingernailData = Object.assign(
+            {},
+            {
+                gateway_device,
+                personal_emerg_button,
+                fire_sensor,
+                gas_sensor,
+                water_flow_sensor,
+                millimeter_wave,
+                vital_signs_millimeter_wave,
+                health_device,
+                external_device,
+                other_device,
+            }
+        );
+    },
+
     methods: {
         initChart() {
             this.$nextTick(() => {
@@ -429,9 +466,7 @@ export default {
         initBottomRightChart() {
             let chartShell = this.$refs.bottomRightChart;
             // _________________________________________________________________________________________________
-            let pie_2 = this.$echarts.getInstanceByDom(
-                chartShell
-            );
+            let pie_2 = this.$echarts.getInstanceByDom(chartShell);
             // // 如果不存在，就进行初始化
             if (pie_2 == null) {
                 pie_2 = this.$echarts.init(chartShell);
@@ -671,7 +706,7 @@ export default {
 /*---top---*/
 .fingernail-wrap {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     align-content: space-between;
     justify-content: space-around;

@@ -6,7 +6,7 @@
                 <div class="box-split">
                     <img src="~@/static/Cut-diagram/jxin8.png" />
                 </div>
-                <p class="box-bottom">3</p>
+                <p class="box-bottom">{{fingernailData.today_warning_count}}</p>
             </div>
 
             <div class="box">
@@ -14,7 +14,7 @@
                 <div class="box-split">
                     <img src="~@/static/Cut-diagram/jxin8.png" />
                 </div>
-                <p class="box-bottom">3</p>
+                <p class="box-bottom">{{fingernailData.device_count}}</p>
             </div>
 
             <div class="box">
@@ -22,7 +22,7 @@
                 <div class="box-split">
                     <img src="~@/static/Cut-diagram/jxin8.png" />
                 </div>
-                <p class="box-bottom">3</p>
+                <p class="box-bottom">{{fingernailData.total_state_treated_count}}</p>
             </div>
 
             <div class="box">
@@ -30,7 +30,7 @@
                 <div class="box-split">
                     <img src="~@/static/Cut-diagram/jxin8.png" />
                 </div>
-                <p class="box-bottom">3</p>
+                <p class="box-bottom">{{fingernailData.state_online_count}}</p>
             </div>
 
             <div class="box">
@@ -38,7 +38,7 @@
                 <div class="box-split">
                     <img src="~@/static/Cut-diagram/jxin8.png" />
                 </div>
-                <p class="box-bottom">3</p>
+                <p class="box-bottom">{{fingernailData.total_state_untreated_count}}</p>
             </div>
 
             <div class="box">
@@ -46,7 +46,7 @@
                 <div class="box-split">
                     <img src="~@/static/Cut-diagram/jxin8.png" />
                 </div>
-                <p class="box-bottom">3</p>
+                <p class="box-bottom">{{fingernailData.state_offline_count}}</p>
             </div>
         </div>
 
@@ -59,7 +59,31 @@
 <script>
 export default {
     data() {
-        return {};
+        return {
+            fingernailData: {},
+        };
+    },
+
+    created() {
+        let {
+            today_warning_count,
+            device_count,
+            total_state_treated_count,
+            state_online_count,
+            total_state_untreated_count,
+            state_offline_count,
+        } = box4;
+        this.fingernailData = Object.assign(
+            {},
+            {
+                today_warning_count,
+                device_count,
+                total_state_treated_count,
+                state_online_count,
+                total_state_untreated_count,
+                state_offline_count,
+            }
+        );
     },
 
     mounted() {
@@ -310,12 +334,12 @@ export default {
 .chart-wrap {
     display: flex;
     justify-content: space-between;
-    height: .975rem
+    height: 0.975rem;
 }
 
 .chart-wrap > div {
     width: 100%;
-    height:100%;
+    height: 100%;
     margin-left: 0.175rem;
 }
 </style>

@@ -30,7 +30,7 @@
                         <div class="box-split">
                             <img src="~@/static/Cut-diagram/jxin8.png" />
                         </div>
-                        <p class="box-bottom">3</p>
+                        <p class="box-bottom">{{fingernailData.total_warning_count}}</p>
                     </div>
 
                     <div class="box">
@@ -38,7 +38,7 @@
                         <div class="box-split">
                             <img src="~@/static/Cut-diagram/jxin8.png" />
                         </div>
-                        <p class="box-bottom">3</p>
+                        <p class="box-bottom">{{fingernailData.total_state_treated_count}}</p>
                     </div>
 
                     <div class="box">
@@ -46,7 +46,7 @@
                         <div class="box-split">
                             <img src="~@/static/Cut-diagram/jxin8.png" />
                         </div>
-                        <p class="box-bottom">3</p>
+                        <p class="box-bottom">{{fingernailData.total_state_untreated_count}}</p>
                     </div>
 
                     <div class="box">
@@ -54,7 +54,7 @@
                         <div class="box-split">
                             <img src="~@/static/Cut-diagram/jxin8.png" />
                         </div>
-                        <p class="box-bottom">3</p>
+                        <p class="box-bottom">{{fingernailData.gateway_count}}</p>
                     </div>
 
                     <div class="box">
@@ -62,7 +62,7 @@
                         <div class="box-split">
                             <img src="~@/static/Cut-diagram/jxin8.png" />
                         </div>
-                        <p class="box-bottom">3</p>
+                        <p class="box-bottom">{{fingernailData.device_count}}</p>
                     </div>
 
                     <div class="box">
@@ -70,7 +70,7 @@
                         <div class="box-split">
                             <img src="~@/static/Cut-diagram/jxin8.png" />
                         </div>
-                        <p class="box-bottom">3</p>
+                        <p class="box-bottom">{{fingernailData.today_warning_count}}</p>
                     </div>
 
                     <div class="box">
@@ -78,7 +78,7 @@
                         <div class="box-split">
                             <img src="~@/static/Cut-diagram/jxin8.png" />
                         </div>
-                        <p class="box-bottom">3</p>
+                        <p class="box-bottom">{{fingernailData.state_treated_count}}</p>
                     </div>
 
                     <div class="box">
@@ -86,7 +86,7 @@
                         <div class="box-split">
                             <img src="~@/static/Cut-diagram/jxin8.png" />
                         </div>
-                        <p class="box-bottom">3</p>
+                        <p class="box-bottom">{{fingernailData.state_untreated_count}}</p>
                     </div>
 
                     <div class="box">
@@ -94,7 +94,7 @@
                         <div class="box-split">
                             <img src="~@/static/Cut-diagram/jxin8.png" />
                         </div>
-                        <p class="box-bottom">3</p>
+                        <p class="box-bottom">{{fingernailData.state_online_count}}</p>
                     </div>
 
                     <div class="box">
@@ -102,7 +102,7 @@
                         <div class="box-split">
                             <img src="~@/static/Cut-diagram/jxin8.png" />
                         </div>
-                        <p class="box-bottom">3</p>
+                        <p class="box-bottom">{{fingernailData.state_offline_count}}</p>
                     </div>
                 </div>
             </div>
@@ -140,8 +140,41 @@ export default {
     },
 
     data() {
-        return {};
+        return {
+            fingernailData: {},
+        };
     },
+
+    created() {
+        let {
+            total_warning_count,
+            total_state_treated_count,
+            total_state_untreated_count,
+            gateway_count,
+            device_count,
+            today_warning_count,
+            state_treated_count,
+            state_untreated_count,
+            state_online_count,
+            state_offline_count,
+        } = box4;
+        this.fingernailData = Object.assign(
+            {},
+            {
+                total_warning_count,
+                total_state_treated_count,
+                total_state_untreated_count,
+                gateway_count,
+                device_count,
+                today_warning_count,
+                state_treated_count,
+                state_untreated_count,
+                state_online_count,
+                state_offline_count,
+            }
+        );
+    },
+
     methods: {
         initChart() {
             this.$nextTick(() => {
