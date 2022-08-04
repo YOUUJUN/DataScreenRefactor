@@ -27,20 +27,18 @@
             :stripe="true"
             style="width: 100%"
         >
-            <el-table-column prop="date" label="告警时间" width="100">
+            <el-table-column prop="create_date" label="告警时间" width="150">
             </el-table-column>
-            <el-table-column prop="name" label="告警类型" width="100">
+            <el-table-column prop="alarm_style" label="告警类型" width="100">
             </el-table-column>
-            <el-table-column prop="address" label="设备名称" width="auto">
-            </el-table-column>
-            <el-table-column prop="address" label="设备地址" width="auto">
+            <el-table-column prop="device_address" label="设备地址" width="auto">
             </el-table-column>
             <el-table-column label="操作" width="100">
                 <template slot-scope="scope">
                     <el-button
                         size="mini"
                         class="lucency-btn"
-                        @click=""
+                        @click="handleDeal(scope)"
                         >立即处理</el-button
                     >
                 </template>
@@ -50,7 +48,8 @@
         <el-pagination
             class="lucency-page"
             layout="prev, pager, next"
-            :total="50"
+            :page-count="totalPage"
+            :current-page.sync="currentPage"
             @current-change="getData"
         >
         </el-pagination>
@@ -60,6 +59,8 @@
 <script>
 import request from "@/utils/web";
 import { postAction } from "@/api/manage";
+
+import qs from 'qs';
 
 export default {
     props: {
@@ -71,43 +72,9 @@ export default {
 
     data() {
         return {
-            tableData: [
-                {
-                    date: "2016-05-02",
-                    name: "王小虎",
-                    address: "上海市普陀区金沙江路 1518 弄",
-                },
-                {
-                    date: "2016-05-04",
-                    name: "王小虎",
-                    address: "上海市普陀区金沙江路 1517 弄",
-                },
-                {
-                    date: "2016-05-01",
-                    name: "王小虎",
-                    address: "上海市普陀区金沙江路 1519 弄",
-                },
-                {
-                    date: "2016-05-03",
-                    name: "王小虎",
-                    address: "上海市普陀区金沙江路 1516 弄",
-                },
-                {
-                    date: "2016-05-03",
-                    name: "王小虎",
-                    address: "上海市普陀区金沙江路 1516 弄",
-                },
-                {
-                    date: "2016-05-03",
-                    name: "王小虎",
-                    address: "上海市普陀区金沙江路 1516 弄",
-                },
-                {
-                    date: "2016-05-03",
-                    name: "王小虎",
-                    address: "上海市普陀区金沙江路 1516 弄",
-                },
-            ],
+            tableData: [],
+            totalPage : 0,
+            currentPage : 1,
         };
     },
 
@@ -124,20 +91,38 @@ export default {
             request({
                 url: `/datav/fm.warning/11/${currentPage}`,
                 method: "post",
-                data: {
+                data: qs.stringify({
                     alarm_type: "sec_alarm",
-                },
+                }),
                 headers: {
                     "content-type": "application/x-www-form-urlencoded",
                 },
             })
                 .then((res) => {
-                    console.log("res", res);
+                    console.log("res-->", res);
+                    if(res.status === 200){
+                        this.tableData = res.data.warning_list
+                        let totalPage = Math.ceil(res.data.search_count / 11)
+                        console.log('totalPage', totalPage);
+                        this.totalPage = totalPage
+                    }
                 })
                 .catch((err) => {
                     console.log("err", err);
                 });
         },
+
+        //立即处理
+        handleDeal(scope){
+            console.log('scope', scope.row);
+            let {id} = scope.row
+            postAction(`/updateDetail/fm.warning/${id}`).then(res => {
+                this.getData(this.currentPage)
+            }).catch(err => {
+                console.log("err", err);
+            })
+        }
+
     },
 };
 </script>

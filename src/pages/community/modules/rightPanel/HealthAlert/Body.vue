@@ -5,10 +5,10 @@
                 <li v-for="item of renderData" :class="{ fadeIn: item.ifNew }">
                     <div class="alert-left">
                         <img :src="item.img" />
-                        <span>{{ item.device_name }}</span>
+                        <span>{{ item.alarm_style }}</span>
                     </div>
                     <span class="alert-center">{{ item.alarming_date }}</span>
-                    <span class="alert-right">离线</span>
+                    <span class="alert-right">{{item.breath_hr}}</span>
                 </li>
             </ul>
         </div>
@@ -25,7 +25,7 @@ export default {
 
     created() {
         this.initRenderData();
-        // this.setWebSocketLink();
+        this.setWebSocketLink();
     },
 
     mounted() {},
@@ -33,7 +33,7 @@ export default {
     methods: {
         //初始化渲染数据
         initRenderData() {
-            let dataSource = box6;
+            let dataSource = box5;
 
             this.renderData = dataSource.warning_two;
         },
@@ -41,8 +41,9 @@ export default {
         updateData(info) {
             let tempObj = {
                 img: info.data[0].img,
-                device_name: info.data[0].device_name,
+                alarm_style: info.data[0].alarm_style,
                 alarming_date: info.data[0].alarming_date,
+                breath_hr: info.data[0].breath_hr,
                 ifNew: true,
             };
 
@@ -52,18 +53,20 @@ export default {
         setWebSocketLink() {
             let ws = new WebSocket(this.$websSite);
             ws.onmessage = function (e) {
-                let obj = JSON.parse(e.data);
-                if (!obj) {
-                    return;
-                }
+                try {
+                    let obj = JSON.parse(e.data);
+                    if (!obj) {
+                        return;
+                    }
 
-                if (
-                    obj.operation === "datav_iot_warning" &&
-                    obj.belong === "nursing"
-                ) {
-                    this.updateData(obj);
-                } else {
-                    console.log("未实现的方法:", err.data);
+                    if (
+                        obj.operation === "datav_iot_warning" &&
+                        obj.belong === "nursing"
+                    ) {
+                        this.updateData(obj);
+                    }
+                } catch (err) {
+                    console.log("未实现的方法:", e.data);
                 }
             };
         },

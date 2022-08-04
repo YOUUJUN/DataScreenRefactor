@@ -330,6 +330,7 @@ li {
 }
 
 .lucency-table.el-table .el-table__cell {
+    padding: .05rem 0;
     text-align: center;
 }
 
@@ -392,6 +393,16 @@ li {
     background-size: 100% 100%;
 }
 
+.lucency-page.el-pagination .el-pager li.active {
+	color: #faaf63;
+	cursor: default;
+}
+
+.lucency-page.el-pagination .el-pager li.btn-quicknext, .el-pager li.btn-quickprev {
+  line-height: 28px;
+  color: #a3ccfa;
+}
+
 /*---lucency-btn---*/
 .lucency-btn.el-button {
     width: 1rem;
@@ -402,7 +413,7 @@ li {
     font-size: 0.15rem;
     cursor: pointer;
     background-color: unset;
-    padding: 0.08rem;
+    padding: 0.06rem;
 }
 
 /*---lucency-title---*/
