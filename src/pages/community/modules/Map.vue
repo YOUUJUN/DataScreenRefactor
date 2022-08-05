@@ -122,32 +122,37 @@ export default {
                     }
                     if (
                         obj.operation === "datav_iot_map" &&
-                        obj.belong === "nursing"
+                        obj.belong === "household"
                     ) {
                         this.mapWarningMarkersArr.push(
                             `datav_iot_map${Date.now().toString()}`
                         );
+
+                        console.log('mapWarningMarkersArr', this.mapWarningMarkersArr);
+
                         if (this.flag === 0) {
+                            console.log('1--------');
                             this.map.setZoom(20);
                             this.map.setCenter([
                                 obj.data[0].longitude,
                                 obj.data[0].latitude,
                                 20,
                             ]);
-                            createToast(
+                            this.createToast(
                                 `datav_iot_map${Date.now().toString()}`,
                                 obj
                             );
                         } else {
+                            console.log('2--------');
                             if (this.timerArr.length === 0) {
                                 this.flag = 0;
 
-                                createToast(
+                                this.createToast(
                                     `datav_iot_map${Date.now().toString()}`,
                                     obj
                                 );
                             } else {
-                                createToast(
+                                this.createToast(
                                     `datav_iot_map${Date.now().toString()}`,
                                     obj
                                 );
@@ -155,7 +160,7 @@ export default {
                         }
                     }
                 } catch (err) {
-                    console.log("未实现的方法:", e.data);
+                    console.log("未实现的方法:", e.data, 'err', err);
                 }
             };
         },
@@ -188,6 +193,7 @@ export default {
 
         //创建弹窗
         createToast(warningMarker, info) {
+            console.log('info',info);
             let warningName = warningMarker;
             let toast = `<div id="${warningMarker}" class="map-toast-container">
                     <div class="map-toast-title">${info.data[0].msg_text}</div>
@@ -204,7 +210,7 @@ export default {
             });
             this.map.add(warningMarker);
             this.flag++;
-            timeCount(warningName, warningName, function (time) {
+            this.timeCount(warningName, warningName, function (time) {
                 let timeSpan = document.getElementById(`time-${warningName}`);
                 timeSpan.innerHTML = time;
             });
@@ -216,7 +222,7 @@ export default {
             let newTimer = setInterval(() => {
                 if (time <= 0) {
                     clearInterval(timer);
-                    deleteToastAndTimer(arg);
+                    this.deleteToastAndTimer(arg);
                 } else {
                     fn(time--);
                 }
@@ -227,8 +233,11 @@ export default {
         // 删除弹窗和定时器
         deleteToastAndTimer(arg) {
             let index = this.mapWarningMarkersArr.indexOf(arg);
+            console.log('arg', arg, document.getElementById(arg));
             let element = document.getElementById(arg);
-            element.parentNode.removeChild(element);
+            if(element){
+                element.parentNode.removeChild(element);
+            }
             this.mapWarningMarkersArr.splice(index, 1);
             this.timerArr.splice(index, 1);
         },

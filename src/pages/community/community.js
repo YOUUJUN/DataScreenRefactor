@@ -30,9 +30,6 @@ Vue.prototype.$bus = bus;
 //echarts
 Vue.prototype.$echarts = echarts
 
-//websocket site
-Vue.prototype.$websSite ='ws://elder.fanmiot.cn:8202/chat'
-
 //axios
 Vue.prototype.$request = Request
 

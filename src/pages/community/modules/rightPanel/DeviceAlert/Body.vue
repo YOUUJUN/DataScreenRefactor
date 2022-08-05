@@ -60,7 +60,7 @@ export default {
 
                     if (
                         obj.operation === "datav_iot_warning" &&
-                        obj.belong === "nursing"
+                        obj.belong === "household"
                     ) {
                         this.updateData(obj);
                     }

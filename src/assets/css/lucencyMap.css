@@ -2,7 +2,7 @@
 .map-toast-container {
     width: 2.5375rem;
     height: 1.825rem;
-    background-image: url("/Amos_DataV/static/src/img/map_toast_bg.png");
+    background-image: url("~@/static/src/img/map_toast_bg.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: relative;
