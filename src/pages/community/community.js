@@ -1,3 +1,5 @@
+
+import '@/utils/config'
 import Vue from 'vue'
 import Home from './Community.vue'
 import Request from '@/utils/web.js'

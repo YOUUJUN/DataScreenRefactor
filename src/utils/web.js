@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = "/datav";
+const baseURL = process.env.VUE_APP_API_BASE_URL;
 
 /**
  * 创建axios实例

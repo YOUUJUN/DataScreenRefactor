@@ -1,15 +1,4 @@
-export default {
+import Vue from 'vue'
 
-    devBaseUrl : 'http://localhost:3000',
-    prodBashUrl : 'http://106.13.63.236',
+Vue.prototype.$websSite = process.env.VUE_APP_API_SOCKET_URL;
 
-    baseUrl (){
-        if(process.env.NODE_ENV === "development" || process.env.NODE_ENV === "devBuild"){
-            return this.devBaseUrl;
-        }else{
-            return this.prodBashUrl
-        }
-    }
-
-
-};

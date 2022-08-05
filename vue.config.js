@@ -131,7 +131,7 @@ module.exports = function() {
             open: false, //是否自动打开浏览器
             proxy: {
                 "/datav": {
-                    target: `http://localhost:9098`,
+                    target: process.env.VUE_APP_PROXY_BASE_URL,
                     // pathRewrite: {
                     //     ["^" + "/datav"]: "",
                     // },
