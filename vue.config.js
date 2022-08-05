@@ -118,9 +118,11 @@ let pageConstruction = buildPageSync();
 
 delete require.cache[module.id];
 
+let publicPath = process.env.NODE_ENV === 'development' ? '/' : "/Amos_DataV/static/templates/Home/zh_CN/";
+
 module.exports = function() {
     return {
-        publicPath: "/",
+        publicPath,
         outputDir: "./../vue-public",
         assetsDir: "static",
         filenameHashing: true,
