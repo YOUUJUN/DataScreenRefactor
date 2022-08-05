@@ -77,6 +77,7 @@ export default {
 .card-body-inner {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 100%;
     height: 100%;
 }
@@ -86,9 +87,7 @@ export default {
 .alert-wrap {
     display: flex;
     justify-content: space-between;
-    height: 100%;
     padding: 0 0.35rem;
-    margin: 0.18rem 0 0.11rem 0;
 }
 
 .alert-list {
@@ -113,7 +112,7 @@ export default {
     box-sizing: border-box;
     padding: 0 0.125rem 0 0.125rem;
     color: #efa963;
-    margin-bottom: 0.11rem;
+    margin: 0.055rem 0;
 }
 
 .alert-left {

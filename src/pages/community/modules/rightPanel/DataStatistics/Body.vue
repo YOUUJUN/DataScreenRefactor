@@ -115,9 +115,11 @@ export default {
                 },
                 grid: {
                     borderWidth: 0,
-                    left: "1%",
+                    // left: "1%",
                     top: "130%",
-                    width: "108%", // 条
+                    left:0,
+                    right:"2%",
+                    // width: "108%", // 条
                 },
                 yAxis: [
                     {
@@ -271,6 +273,7 @@ export default {
 .card-body-inner {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     width: 100%;
     height: 100%;
 }

@@ -5,6 +5,7 @@
         :modal="false"
         :show-close="false"
         :destroy-on-close="true"
+        :append-to-body="true"
         custom-class="lucency-dlg"
         @open="initChart"
     >
@@ -307,7 +308,7 @@ export default {
                         itemWidth: 15,
                         // type: "scroll",
                         orient: "vertical",
-                        left: "74%",
+                        left: "65%",
                         align: "auto",
                         // top: '35%',
                         top: "30%",
@@ -363,8 +364,8 @@ export default {
                 series: [
                     {
                         type: "pie",
-                        radius: ["30%", "45%"],
-                        center: ["50%", "50%"],
+                        radius: ["80%", "45%"],
+                        center: ["30%", "50%"],
                         hoverAnimation: true,
                         z: 10,
                         // itemStyle: {
@@ -432,7 +433,7 @@ export default {
                     left: "3%",
                     right: "4%",
                     bottom: "15%",
-                    top: "0%",
+                    top: "11%",
                     containLabel: true,
                 },
                 xAxis: [
@@ -619,7 +620,7 @@ export default {
                         itemWidth: 15,
                         // type: "scroll",
                         orient: "vertical",
-                        left: "74%",
+                        left: "65%",
                         align: "auto",
                         // top: '35%',
                         top: "30%",
@@ -675,8 +676,8 @@ export default {
                 series: [
                     {
                         type: "pie",
-                        radius: ["30%", "45%"],
-                        center: ["50%", "50%"],
+                        radius: ["80%", "45%"],
+                        center: ["30%", "50%"],
                         hoverAnimation: true,
                         z: 10,
                         // itemStyle: {

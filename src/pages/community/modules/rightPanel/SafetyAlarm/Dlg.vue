@@ -4,6 +4,7 @@
         :before-close="handleClose"
         :modal="false"
         :show-close="false"
+        :append-to-body="true"
         custom-class="lucency-dlg"
     >
         <template slot="title">
@@ -27,13 +28,13 @@
             :stripe="true"
             style="width: 100%"
         >
-            <el-table-column prop="create_date" label="告警时间" width="150">
+            <el-table-column prop="create_date" label="告警时间" width="150" align="center">
             </el-table-column>
-            <el-table-column prop="alarm_style" label="告警类型" width="100">
+            <el-table-column prop="alarm_style" label="告警类型" width="140" align="center">
             </el-table-column>
             <el-table-column prop="device_address" label="设备地址" width="auto">
             </el-table-column>
-            <el-table-column label="操作" width="100">
+            <el-table-column label="操作" width="100" align="center">
                 <template slot-scope="scope">
                     <el-button
                         size="mini"

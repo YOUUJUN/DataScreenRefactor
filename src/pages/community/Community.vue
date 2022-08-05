@@ -321,7 +321,6 @@ li {
 
 .lucency-table.el-table .el-table__row {
     color: #faaf63;
-    text-align: center;
 }
 
 .lucency-table.el-table thead {
@@ -331,7 +330,6 @@ li {
 
 .lucency-table.el-table .el-table__cell {
     padding: .05rem 0;
-    text-align: center;
 }
 
 /*---lucency-page---*/

@@ -78,6 +78,7 @@ export default {
 .card-body-inner {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 100%;
     height: 100%;
 }
@@ -85,11 +86,9 @@ export default {
 /*---bottom---*/
 
 .alert-wrap {
-	display: flex;
-	justify-content: space-between;
-	height: 100%;
-	padding: 0 0.35rem;
-	margin: .18rem 0 .11rem 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.35rem;
 }
 
 .alert-list {
@@ -99,45 +98,43 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
-    font-size: .16rem;
+    font-size: 0.16rem;
 }
 
 .alert-list li {
-	width: 100%;
-	height: .475rem;
-	background-image: url("~@/static/Cut-diagram/dikianua.png");
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	box-sizing: border-box;
-	padding: 0 .125rem 0 .125rem;
-	color: #EFA963;
-	margin-bottom: 0.11rem;
+    width: 100%;
+    height: 0.475rem;
+    background-image: url("~@/static/Cut-diagram/dikianua.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 0.125rem 0 0.125rem;
+    color: #efa963;
+    margin: 0.055rem 0;
 }
 
 .alert-left {
     display: flex;
-	align-items: center;
-	height: 100%;
+    align-items: center;
+    height: 100%;
 }
 
 .alert-left img {
-	width: .3125rem;
-	height: .3125rem;
-	margin-right: .0625rem;
+    width: 0.3125rem;
+    height: 0.3125rem;
+    margin-right: 0.0625rem;
 }
 
 .alert-left span {
-	display: block;
-	width: 0.75rem;
-	height: .475rem;
-	line-height: .475rem;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+    display: block;
+    width: 0.75rem;
+    height: 0.475rem;
+    line-height: 0.475rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-
-
 </style>

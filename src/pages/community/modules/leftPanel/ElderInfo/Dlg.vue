@@ -5,6 +5,7 @@
         :modal="false"
         :show-close="false"
         :destroy-on-close="true"
+        :append-to-body="true"
         custom-class="lucency-dlg"
         @open="initChart"
     >
@@ -853,6 +854,7 @@ export default {
                         name: "",
                         type: "pie",
                         radius: ["40%", "60%"],
+                        center: ["45%", "50%"],
                         avoidLabelOverlap: false,
                         label: {
                             show: false,

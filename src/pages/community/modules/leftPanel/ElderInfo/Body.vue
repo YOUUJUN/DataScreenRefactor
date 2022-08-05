@@ -452,6 +452,7 @@ export default {
 .card-body-inner {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     width: 100%;
     height: 100%;
 }

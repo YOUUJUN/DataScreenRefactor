@@ -5,6 +5,7 @@
         :modal="false"
         :show-close="false"
         :destroy-on-close="true"
+        :append-to-body="true"
         custom-class="lucency-dlg"
         @open="initChart"
     >

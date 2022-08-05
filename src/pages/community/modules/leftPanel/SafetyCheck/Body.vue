@@ -202,7 +202,8 @@ export default {
 
 .chart-wrap {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: space-around;
     height: 100%;
 }
 

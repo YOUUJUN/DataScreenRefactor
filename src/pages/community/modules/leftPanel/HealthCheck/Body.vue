@@ -47,8 +47,9 @@ export default {
                     // bottom: '1',
                     // top: '1',
                     // containLabel: true,
-                    top: 10,
-                    height: '100%',
+                    top: 0,
+                    // height: '100%',
+                    bottom:0,
                     left: 80,
                     right: 50,
                 },
@@ -162,7 +163,8 @@ export default {
 
 .chart-wrap {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: space-around;
     height: 100%;
 }
 
