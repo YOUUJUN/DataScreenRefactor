@@ -1,8 +1,8 @@
 <template>
     <div class="card-body-inner">
         <div class="alert-wrap">
-            <ul class="alert-list">
-                <li v-for="item of renderData" :class="{ fadeIn: item.ifNew }">
+            <ul class="alert-list" ref="list">
+                <li v-for="item of renderData">
                     <div class="alert-left">
                         <img :src="item.img" />
                         <span>{{ item.device_name }}</span>
@@ -39,6 +39,7 @@ export default {
         },
 
         updateData(info) {
+            console.log("obj-->2 in1", info);
             let tempObj = {
                 img: info.data[0].img,
                 device_name: info.data[0].device_name,
@@ -46,22 +47,34 @@ export default {
                 ifNew: true,
             };
 
+            console.log("obj-->2 in", tempObj);
+
             this.renderData.unshift(tempObj);
+            let li = this.$refs.list.querySelector("li");
+            li.classList.remove("fadeIn");
+
+            this.$nextTick(() => {
+                setTimeout(() => {
+                    li.classList.add("fadeIn");
+                }, 50);
+            });
         },
 
         setWebSocketLink() {
             let ws = new WebSocket(this.$websSite);
-            ws.onmessage = function (e) {
+            ws.onmessage =  (e) => {
                 try {
                     let obj = JSON.parse(e.data);
+                    console.log("obj-->2", obj);
                     if (!obj) {
                         return;
                     }
 
                     if (
                         obj.operation === "datav_iot_warning" &&
-                        obj.belong === "household"
+                        obj.belong === "household" && obj.inst_id=== inst_id && obj.data[0].alarm_type === 'equ_alarm'
                     ) {
+                        console.log("obj-->2 ok");
                         this.updateData(obj);
                     }
                 } catch (err) {

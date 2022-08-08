@@ -1,5 +1,8 @@
 <template>
-    <div id="amap" ref="amap"></div>
+    <div class="map-wrap">
+        <div class="audio-wrap" ref="audioWrap" id="audioWrap"></div>
+        <div id="amap" ref="amap"></div>
+    </div>
 </template>
 
 <script>
@@ -28,6 +31,7 @@ export default {
     },
 
     methods: {
+        //生成标记，绑定鼠标hover事件
         getMarkers() {
             for (var i = 0; i < points.length; i++) {
                 this.markers.push(
@@ -48,8 +52,43 @@ export default {
             await this.getCenterPoints();
             await this.getGatewayPoint();
             this.setWebsocketLink();
+
+              
             this.getMarkers();
             this.addCluster();
+        },
+
+        //生成告警语音  
+        creatAudio(url) {
+            // let shell = document.getElementById("audioWrap");
+            let shell = this.$refs.audioWrap; 
+            let audio = document.createElement("audio");
+            audio.autoplay = true;
+            setTimeout(() => {
+                audio.src = url;
+            }, 0);
+
+            shell.appendChild(audio);
+            audio.play();
+        },
+
+        sleep() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve();
+                }, 5500);
+            });
+        },
+
+        //语音告警
+        async doTalk(url) {
+            this.creatAudio(url);
+            await this.sleep();
+            console.log("1");
+            this.creatAudio(url);
+            await this.sleep();
+            console.log("1");
+            this.creatAudio(url);
         },
 
         // 初始化地图
@@ -124,14 +163,23 @@ export default {
                         obj.operation === "datav_iot_map" &&
                         obj.belong === "household"
                     ) {
+                        //语音告警
+                        console.log('alarm_style', obj.data[0].alarm_style)
+                        if (obj.data[0].alarm_style != 'device') {
+                            this.doTalk(obj.data[0].audio_url)
+                        }
+
                         this.mapWarningMarkersArr.push(
                             `datav_iot_map${Date.now().toString()}`
                         );
 
-                        console.log('mapWarningMarkersArr', this.mapWarningMarkersArr);
+                        console.log(
+                            "mapWarningMarkersArr",
+                            this.mapWarningMarkersArr
+                        );
 
                         if (this.flag === 0) {
-                            console.log('1--------');
+                            console.log("1--------");
                             this.map.setZoom(20);
                             this.map.setCenter([
                                 obj.data[0].longitude,
@@ -143,7 +191,7 @@ export default {
                                 obj
                             );
                         } else {
-                            console.log('2--------');
+                            console.log("2--------");
                             if (this.timerArr.length === 0) {
                                 this.flag = 0;
 
@@ -160,7 +208,7 @@ export default {
                         }
                     }
                 } catch (err) {
-                    console.log("未实现的方法:", e.data, 'err', err);
+                    console.log("未实现的方法:", e.data);
                 }
             };
         },
@@ -193,7 +241,7 @@ export default {
 
         //创建弹窗
         createToast(warningMarker, info) {
-            console.log('info',info);
+            console.log("info", info);
             let warningName = warningMarker;
             let toast = `<div id="${warningMarker}" class="map-toast-container">
                     <div class="map-toast-title">${info.data[0].msg_text}</div>
@@ -233,9 +281,9 @@ export default {
         // 删除弹窗和定时器
         deleteToastAndTimer(arg) {
             let index = this.mapWarningMarkersArr.indexOf(arg);
-            console.log('arg', arg, document.getElementById(arg));
+            console.log("arg", arg, document.getElementById(arg));
             let element = document.getElementById(arg);
-            if(element){
+            if (element) {
                 element.parentNode.removeChild(element);
             }
             this.mapWarningMarkersArr.splice(index, 1);
@@ -304,8 +352,9 @@ export default {
                                     //     .nextAll()
                                     //     .remove();
 
-                                    document.querySelector(".amap-marker-content").innerHTML = "";
-
+                                    document.querySelector(
+                                        ".amap-marker-content"
+                                    ).innerHTML = "";
                                 } else if (len.length < 2) {
                                     // B.parentNode.removeChild(B)
                                     addDiv();
@@ -901,6 +950,7 @@ export default {
 </style>
 
 <style scoped>
+.map-wrap,
 #amap {
     width: 100%;
     height: 100%;

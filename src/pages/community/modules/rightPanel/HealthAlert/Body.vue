@@ -1,8 +1,8 @@
 <template>
     <div class="card-body-inner">
         <div class="alert-wrap">
-            <ul class="alert-list">
-                <li v-for="item of renderData" :class="{ fadeIn: item.ifNew }">
+            <ul class="alert-list" ref="list">
+                <li v-for="item of renderData">
                     <div class="alert-left">
                         <img :src="item.img" />
                         <span>{{ item.alarm_style }}</span>
@@ -39,6 +39,7 @@ export default {
         },
 
         updateData(info) {
+            console.log('info', info);
             let tempObj = {
                 img: info.data[0].img,
                 alarm_style: info.data[0].alarm_style,
@@ -46,29 +47,40 @@ export default {
                 breath_hr: info.data[0].breath_hr,
                 ifNew: true,
             };
-
+            console.log('this.$refs.list', this.$refs.list);
             this.renderData.unshift(tempObj);
+            let li = this.$refs.list.querySelector("li");
+            console.log('li', li);
+            li.classList.remove("fadeIn");
+
+            this.$nextTick(() => {
+                setTimeout(() => {
+                    li.classList.add("fadeIn");
+                }, 50);
+            });
         },
 
         setWebSocketLink() {
             let ws = new WebSocket(this.$websSite);
-            ws.onmessage = function (e) {
+            ws.addEventListener("message", (e) => {
+                console.log("e--->", e);
                 try {
                     let obj = JSON.parse(e.data);
+                    console.log("obj-->1", obj);
                     if (!obj) {
                         return;
                     }
 
                     if (
                         obj.operation === "datav_iot_warning" &&
-                        obj.belong === "household"
+                        obj.belong === "household" && obj.inst_id=== inst_id && obj.data[0].alarm_type === 'hea_alarm'
                     ) {
                         this.updateData(obj);
                     }
                 } catch (err) {
                     console.log("未实现的方法:", e.data);
                 }
-            };
+            });
         },
     },
 };

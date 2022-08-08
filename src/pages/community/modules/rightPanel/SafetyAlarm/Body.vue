@@ -2,10 +2,7 @@
     <div class="card-body-inner">
         <div class="alert-wrap">
             <ul class="alert-list" ref="list">
-                <li
-                    v-for="(item, index) of renderData"
-                    :index="item.timming"
-                >
+                <li v-for="(item, index) of renderData">
                     <div class="alert-left">
                         <img :src="item.img" />
                         <span>{{ item.alarm_style }}</span>
@@ -38,11 +35,7 @@ export default {
         initRenderData() {
             let dataSource = box7;
 
-            dataSource.warning_two.forEach((item) => {
-                this.renderData.push(item);
-            });
-
-            // this.renderData = dataSource.warning_two;
+            this.renderData = dataSource.warning_two;
         },
 
         updateData(info) {
@@ -52,25 +45,21 @@ export default {
                 alarm_style: info.data[0].alarm_style,
                 alarming_date: info.data[0].alarming_date,
                 ifNew: true,
-                timming: new Date().getTime() + 1,
             };
+
+            this.renderData.unshift(tempObj);
+            let li = this.$refs.list.querySelector("li");
+            li.classList.remove("fadeIn");
+
             this.$nextTick(() => {
-                this.renderData.unshift(tempObj);
-                
-                let li = this.$refs.list.querySelector("li");
-                li.classList.remove('fadeIn');
                 setTimeout(() => {
-                    li.classList.add('fadeIn');
-                },50)
+                    li.classList.add("fadeIn");
+                }, 50);
             });
         },
 
         setWebSocketLink() {
             let ws = new WebSocket(this.$websSite);
-            ws.addEventListener("open", (event) => {
-                console.log("hello server!");
-            });
-
             ws.addEventListener("message", (e) => {
                 console.log("e--->", e);
                 try {
@@ -82,7 +71,7 @@ export default {
 
                     if (
                         obj.operation === "datav_iot_warning" &&
-                        obj.belong === "household"
+                        obj.belong === "household" && obj.inst_id=== inst_id && obj.data[0].alarm_type === 'sec_alarm'
                     ) {
                         this.updateData(obj);
                     }
@@ -91,24 +80,6 @@ export default {
                 }
             });
 
-            // ws.onmessage = function (e) {
-            //     console.log("e--->", e);
-            //     try {
-            //         let obj = JSON.parse(e.data);
-            //         if (!obj) {
-            //             return;
-            //         }
-
-            //         if (
-            //             obj.operation === "datav_iot_warning" &&
-            //             obj.belong === "nursing"
-            //         ) {
-            //             this.updateData(obj);
-            //         }
-            //     } catch (err) {
-            //         console.log("未实现的方法:", e.data);
-            //     }
-            // };
         },
     },
 };
