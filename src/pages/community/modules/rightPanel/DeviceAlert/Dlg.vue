@@ -78,8 +78,15 @@ export default {
         };
     },
 
-    created() {
-        this.getData(1);
+    watch : {
+        visible : {
+            immediate : true,
+            handler(newValue){
+                if(newValue === true){
+                    this.getData(1);
+                }
+            }
+        }
     },
 
     methods: {

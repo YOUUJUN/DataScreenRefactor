@@ -27,7 +27,12 @@
                 </div>
 
                 <div class="head-right">
-                    <a href="/web#menu_id=527&action=612" class="head-right-goto" target="_blank">生命体征检测</a>
+                    <a
+                        href="/web#menu_id=527&action=612"
+                        class="head-right-goto"
+                        target="_blank"
+                        >生命体征检测</a
+                    >
                     <div class="head-right-ctrl">
                         <div
                             v-if="!ifFullScreen"
@@ -45,42 +50,46 @@
         </header>
 
         <main class="body-wrap">
-            <section class="body-left">
-                <div class="card-wrap">
-                    <div class="card">
-                        <div class="card-head">
-                            <slot name="ElderInfoHead"></slot>
+            <section class="body-left-wrap">
+                <el-scrollbar style="height: 100%;width:100%;">
+                    <div class="body-left">
+                        <div class="card-wrap">
+                            <div class="card">
+                                <div class="card-head">
+                                    <slot name="ElderInfoHead"></slot>
+                                </div>
+
+                                <div class="card-body">
+                                    <slot name="ElderInfoBody"></slot>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="card-body">
-                            <slot name="ElderInfoBody"></slot>
+                        <div class="card-wrap">
+                            <div class="card">
+                                <div class="card-head">
+                                    <slot name="HealthCheckHead"></slot>
+                                </div>
+
+                                <div class="card-body">
+                                    <slot name="HealthCheckBody"></slot>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-wrap">
+                            <div class="card">
+                                <div class="card-head">
+                                    <slot name="SafetyCheckHead"></slot>
+                                </div>
+
+                                <div class="card-body">
+                                    <slot name="SafetyCheckBody"></slot>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="card-wrap">
-                    <div class="card">
-                        <div class="card-head">
-                            <slot name="HealthCheckHead"></slot>
-                        </div>
-
-                        <div class="card-body">
-                            <slot name="HealthCheckBody"></slot>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-wrap">
-                    <div class="card">
-                        <div class="card-head">
-                            <slot name="SafetyCheckHead"></slot>
-                        </div>
-
-                        <div class="card-body">
-                            <slot name="SafetyCheckBody"></slot>
-                        </div>
-                    </div>
-                </div>
+                </el-scrollbar>
             </section>
 
             <section class="body-center">
@@ -97,54 +106,58 @@
                 </div>
             </section>
 
-            <section class="body-right">
-                <div class="card-wrap">
-                    <div class="card">
-                        <div class="card-head">
-                            <slot name="DataStatisticsHead"></slot>
+            <section class="body-right-wrap">
+                <el-scrollbar style="height: 100%;width:100%;">
+                    <div class="body-right">
+                        <div class="card-wrap">
+                            <div class="card">
+                                <div class="card-head">
+                                    <slot name="DataStatisticsHead"></slot>
+                                </div>
+
+                                <div class="card-body">
+                                    <slot name="DataStatisticsBody"></slot>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="card-body">
-                            <slot name="DataStatisticsBody"></slot>
+                        <div class="card-wrap">
+                            <div class="card">
+                                <div class="card-head">
+                                    <slot name="HealthAlertHead"></slot>
+                                </div>
+
+                                <div class="card-body">
+                                    <slot name="HealthAlertBody"></slot>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-wrap">
+                            <div class="card">
+                                <div class="card-head">
+                                    <slot name="DeviceAlertHead"></slot>
+                                </div>
+
+                                <div class="card-body">
+                                    <slot name="DeviceAlertBody"></slot>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-wrap">
+                            <div class="card">
+                                <div class="card-head">
+                                    <slot name="SafetyAlarmHead"></slot>
+                                </div>
+
+                                <div class="card-body">
+                                    <slot name="SafetyAlarmBody"></slot>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="card-wrap">
-                    <div class="card">
-                        <div class="card-head">
-                            <slot name="HealthAlertHead"></slot>
-                        </div>
-
-                        <div class="card-body">
-                            <slot name="HealthAlertBody"></slot>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-wrap">
-                    <div class="card">
-                        <div class="card-head">
-                            <slot name="DeviceAlertHead"></slot>
-                        </div>
-
-                        <div class="card-body">
-                            <slot name="DeviceAlertBody"></slot>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-wrap">
-                    <div class="card">
-                        <div class="card-head">
-                            <slot name="SafetyAlarmHead"></slot>
-                        </div>
-
-                        <div class="card-body">
-                            <slot name="SafetyAlarmBody"></slot>
-                        </div>
-                    </div>
-                </div>
+                </el-scrollbar>
             </section>
         </main>
 
@@ -248,6 +261,16 @@ export default {
     },
 };
 </script>
+
+<style>
+/*---重写element-ui滚动条样式---*/
+.body-left-wrap .el-scrollbar__view, .body-right-wrap .el-scrollbar__view{
+    height: 100%;
+}
+.body-left-wrap .el-scrollbar__bar.is-horizontal, .body-right-wrap .el-scrollbar__bar.is-horizontal {
+    display: none;
+}
+</style>
 
 <style scoped>
 .root {
@@ -397,31 +420,35 @@ export default {
     cursor: pointer;
 }
 
-.full-btn{
+.full-btn {
     background: url("~@/static/src/img/fullScreen.png");
     background-size: 0.325rem 0.325rem;
 }
 
-.exit-btn{
+.exit-btn {
     background: url("~@/static/src/img/ExitScreen.png");
     background-size: 0.325rem 0.325rem;
 }
-
-
 </style>
 
 <style scoped>
 /*---页面主体---*/
 
-.body-left {
+.body-left-wrap {
+    display: flex;
     flex: none;
     width: 5.3125rem;
     height: 100%;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding-left: 0.18rem;
     z-index: 2;
+}
+
+.body-left {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .body-center {
@@ -430,15 +457,21 @@ export default {
     z-index: 2;
 }
 
-.body-right {
+.body-right-wrap {
+    display: flex;
     flex: none;
     width: 5.3125rem;
     height: 100%;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding-right: 0.18rem;
     z-index: 2;
+}
+
+.body-right {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /*---left---*/
