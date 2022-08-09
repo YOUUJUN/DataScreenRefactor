@@ -270,6 +270,10 @@ export default {
 .body-left-wrap .el-scrollbar__bar.is-horizontal, .body-right-wrap .el-scrollbar__bar.is-horizontal {
     display: none;
 }
+
+.body-left-wrap .el-scrollbar__wrap, .body-right-wrap .el-scrollbar__wrap{
+    overflow-x: hidden;
+}
 </style>
 
 <style scoped>
@@ -493,7 +497,7 @@ export default {
     flex: none;
     width: 100%;
     height: 0.625rem;
-    background-image: url("~@/static/src/img/card-top.png");
+    background-image: url("~@/static/cut/card-top.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
@@ -501,7 +505,7 @@ export default {
 .body-left .card-body {
     flex: auto;
     width: 100%;
-    background-image: url("~@/static/src/img/card-bottom.png");
+    background-image: url("~@/static/cut/card-bottom.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }

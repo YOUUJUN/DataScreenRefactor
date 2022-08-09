@@ -5,7 +5,7 @@ import Home from './Community.vue'
 import Request from '@/utils/web.js'
 import * as echarts from "echarts";
 
-import { Button, Dialog, Table, Pagination, Tooltip } from 'element-ui';
+import { Button, Dialog, Table, Pagination, Tooltip, Scrollbar } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 const components = [
@@ -14,6 +14,7 @@ const components = [
   Table,
   Pagination,
   Tooltip,
+  Scrollbar,
 ];
 
 components.forEach((component) => {

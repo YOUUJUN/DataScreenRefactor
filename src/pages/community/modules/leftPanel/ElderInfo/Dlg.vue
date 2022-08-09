@@ -173,8 +173,9 @@ export default {
                 },
                 //圆环位置和大小
                 polar: {
+                    // radius: ["50%", "70%"],
                     // center: ['50%', '50%'],
-                    radius: "130%",
+                    radius: "170%",
                 },
 
                 series: [
@@ -370,7 +371,7 @@ export default {
                 //圆环位置和大小
                 polar: {
                     // center: ['50%', '50%'],
-                    radius: "130%",
+                    radius: "170%",
                 },
 
                 series: [
