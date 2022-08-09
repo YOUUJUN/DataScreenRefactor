@@ -118,7 +118,7 @@ let pageConstruction = buildPageSync();
 
 delete require.cache[module.id];
 
-let publicPath = process.env.NODE_ENV === 'development' ? '/' : "/Amos_DataV/static/templates/Home/zh_CN/";
+let publicPath = process.env.NODE_ENV === 'development' ? '/' : "/fm_monitor/static/src/";
 
 module.exports = function() {
     return {

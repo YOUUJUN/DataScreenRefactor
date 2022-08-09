@@ -353,6 +353,7 @@ export default {
 <style>
 .lucency-dlg.short {
     height:4.2875rem;
+    width:12.425rem;
 }
 </style>
 

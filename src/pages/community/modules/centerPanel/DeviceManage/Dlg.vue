@@ -759,7 +759,7 @@ export default {
     flex-direction: column;
     width: 50%;
     height: 100%;
-    padding: 0.2rem;
+    padding: 0.15rem;
     padding-bottom: 0;
 }
 
