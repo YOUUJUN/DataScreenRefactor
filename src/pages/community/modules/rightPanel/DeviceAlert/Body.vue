@@ -41,7 +41,7 @@ export default {
         updateData(info) {
             console.log("obj-->2 in1", info);
             let tempObj = {
-                img: info.data[0].img,
+                img: `/fm_monitor/static/warning/${info.data[0].img}`,
                 device_name: info.data[0].device_name,
                 alarming_date: info.data[0].alarming_date,
                 ifNew: true,
