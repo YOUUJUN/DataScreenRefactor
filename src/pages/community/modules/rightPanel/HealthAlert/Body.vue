@@ -41,7 +41,7 @@ export default {
         updateData(info) {
             console.log('info', info);
             let tempObj = {
-                img: `/fm_monitor/static/warning/${info.data[0].img}`,
+                img: `${info.data[0].img}`,
                 alarm_style: info.data[0].alarm_style,
                 alarming_date: info.data[0].alarming_date,
                 breath_hr: info.data[0].breath_hr,
