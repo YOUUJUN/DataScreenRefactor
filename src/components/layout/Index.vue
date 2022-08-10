@@ -28,7 +28,7 @@
 
                 <div class="head-right">
                     <a
-                        href="/web#menu_id=527&action=612"
+                        :href="herf_url"
                         class="head-right-goto"
                         target="_blank"
                         >生命体征检测</a
@@ -186,6 +186,7 @@ export default {
         this.displayDate();
 
         this.herf_url = window.herf_url;
+        console.log('herf_url', herf_url);
     },
 
     mounted() {},
