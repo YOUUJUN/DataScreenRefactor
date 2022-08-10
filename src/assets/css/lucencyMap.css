@@ -179,6 +179,8 @@
     text-align: initial;
     line-height: initial !important;
     display: flex;
+    flex-direction: row;
+    align-items: center;
     margin-bottom: 0.0625rem;
 }
 
@@ -187,8 +189,12 @@
 }
 
 .gateway-item div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex:none;
     color: #43e0ff;
-    width: 40%;
+    width: 95px;
     /*position: relative;*/
     /*line-height: initial !important;*/
     /*display: initial !important;*/
@@ -206,8 +212,8 @@
 /*}*/
 
 .gateway-item span:nth-child(2){
+    flex:auto;
     display: block;
-    width: 60%;
     /*overflow     : hidden;*/
     /*text-overflow: ellipsis;*/
     /*white-space  : nowrap;*/
@@ -253,6 +259,8 @@
     text-align: initial;
     line-height: initial !important;
     display: flex;
+    flex-direction: row;
+    align-items: center;
     margin-bottom: 5px;
 }
 
@@ -262,11 +270,15 @@
 }
 
 .gateway-min-item div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex:none;
     color: #43e0ff;
     /*position: relative;*/
     /*line-height: initial !important;*/
     /*display: initial !important;*/
-    width: 40%;
+    width: 95px;
     /*line-height: 0.175rem;*/
 }
 
@@ -282,9 +294,9 @@
 /*}*/
 
 .gateway-min-item span:nth-child(2){
+    flex:auto;
     display: block;
     line-height: initial !important;
-    width: 60%;
 }
 
 .wangguan-name-icon {

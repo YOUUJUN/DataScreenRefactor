@@ -161,7 +161,7 @@ export default {
                     }
                     if (
                         obj.operation === "datav_iot_map" &&
-                        obj.belong === "household"
+                        obj.belong === 'nursing' && obj.inst_id == inst_id
                     ) {
                         //语音告警
                         console.log('alarm_style', obj.data[0].alarm_style)

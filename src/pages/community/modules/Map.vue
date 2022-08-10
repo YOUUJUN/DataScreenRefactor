@@ -53,15 +53,14 @@ export default {
             await this.getGatewayPoint();
             this.setWebsocketLink();
 
-              
             this.getMarkers();
             this.addCluster();
         },
 
-        //生成告警语音  
+        //生成告警语音
         creatAudio(url) {
             // let shell = document.getElementById("audioWrap");
-            let shell = this.$refs.audioWrap; 
+            let shell = this.$refs.audioWrap;
             let audio = document.createElement("audio");
             audio.autoplay = true;
             setTimeout(() => {
@@ -161,12 +160,12 @@ export default {
                     }
                     if (
                         obj.operation === "datav_iot_map" &&
-                        obj.belong === "household"
+                        obj.belong === "household" && obj.inst_id == inst_id
                     ) {
                         //语音告警
-                        console.log('alarm_style', obj.data[0].alarm_style)
-                        if (obj.data[0].alarm_style != 'device') {
-                            this.doTalk(obj.data[0].audio_url)
+                        console.log("alarm_style", obj.data[0].alarm_style);
+                        if (obj.data[0].alarm_style != "device") {
+                            this.doTalk(obj.data[0].audio_url);
                         }
 
                         this.mapWarningMarkersArr.push(
@@ -454,12 +453,33 @@ export default {
             let oneGateWay = `<div class="gateway-min-container">
                             1
                             <div class="gateway-min-hover">
-                                <div class="gateway-min-item"><div><div style="width: 100%;display: flex;align-items: center;"><span class="wangguan-name-icon"></span>网关名称：</div></div><span title="${context.data[0].name}">${context.data[0].name}</span></div>
-                                <div class="gateway-min-item"><div><div style="width: 100%;display: flex;align-items: center;"><span class="wangguan-location-icon"></span>网关位置：</div></div><span title="${context.data[0].address}">${context.data[0].address}</span></div>
-                                <div class="gateway-min-item"><div><div style="width: 100%;display: flex;align-items: center;"><span class="wangguan-device-icon"></span>设备数量：</div></div><span title="${context.data[0].device_count}">${context.data[0].device_count}</span></div>
+                                <div class="gateway-min-item">
+                                    <div>
+                                        <div style="width: 100%;display: flex;align-items: center;">
+                                            <span class="wangguan-name-icon"></span>
+                                            <span style="letter-spacing: 2.8px;">网关名称：</span>
+                                        </div>
+                                    </div><span style="display: block;width: 52%">${context.data[0].name}</span></div>
+                                <div class="gateway-min-item">
+                                    <div>
+                                        <div style="width: 100%;display: flex;align-items: center;">
+                                            <span class="wangguan-location-icon"></span>
+                                            <span style="letter-spacing: 2.8px;">网关位置：</span>
+                                        </div>
+                                    </div>
+                                    <span style="display: block;width: 52%">${context.data[0].address}</span></div>
+                                <div class="gateway-min-item">
+                                    <div>
+                                        <div style="width: 100%;display: flex;align-items: center;">
+                                            <span class="wangguan-device-icon"></span>
+                                            <span style="letter-spacing: 2.8px;">设备数量：</span>
+                                        </div>
+                                    </div><span style="display: block;width: 52%">${context.data[0].device_count}</span></div>
+                                <div class="gateway-min-item"><div><div style="width: 100%;display: flex;align-items: center;"><span class="wangguan-jinjilianxiren-icon"></span><span>紧急联系人：</div></div></span><span style="display: block;width: 52%">${context.data[0].new_emergency_call}</span></div>
+                                <div class="gateway-min-item"><div><div style="width: 100%;display: flex;align-items: center;"><span class="wangguan-wanggeyuan-icon"></span><span>网格员电话：</div></div></span><span style="display: block;width: 52%">${context.data[0].grid_member_telephone}</span></div>
                             </div>
                           </div>`;
-            let offset = new AMap.Pixel(-15, -15);
+            let offset = new AMap.Pixel(-9, -9);
             context.marker.setContent(oneGateWay);
             context.marker.setOffset(offset);
         },
@@ -508,7 +528,10 @@ export default {
             divToast.classList.add("gateway-toast-container");
             divToast.style.display = "none";
             div.appendChild(divToast);
-            div.addEventListener("click", function () {
+            div.onmouseleave = function () {
+                divToast.style.display = "none";
+            };
+            div.addEventListener("mouseover", function () {
                 console.log(context);
                 let divToastContent = "";
                 // 判断聚合点在页面上点位置
@@ -565,9 +588,31 @@ export default {
                     j++
                 ) {
                     divToastContent += `<div class="gateway-item-container">
-                                         <div class="gateway-item"><div><div style="width: 100%;display: flex;align-items: center;"><span class="wangguan-name-icon"></span>网关名称：</div></div><span title="${context.clusterData[0]._amapMarker.originData[0][j].name}">${context.clusterData[0]._amapMarker.originData[0][j].name}</span></div>
-                                         <div class="gateway-item"><div><div style="width: 100%;display: flex;align-items: center;"><span class="wangguan-location-icon"></span>网关位置：</div></div><span title="${context.clusterData[0]._amapMarker.originData[0][j].address}">${context.clusterData[0]._amapMarker.originData[0][j].address}</span></div>
-                                         <div class="gateway-item"><div><div style="width: 100%;display: flex;align-items: center;"><span class="wangguan-device-icon"></span>设备数量：</div></div><span>${context.clusterData[0]._amapMarker.originData[0][j].device_count}</span></div>
+                                         <div class="gateway-item">
+                                            <div>
+                                                <div style="width: 100%;display: flex;align-items: center;">
+                                                    <span class="wangguan-name-icon"></span>
+                                                    <span style="letter-spacing: 2.8px;">网关名称：</span>
+                                                </div>
+                                            </div>
+                                            <span style="display: block;width: 55%">${context.clusterData[0]._amapMarker.originData[0][j].name}</span>
+                                         </div>
+                                         <div class="gateway-item">
+                                            <div>
+                                                <div style="width: 100%;display: flex;align-items: center;">
+                                                    <span class="wangguan-location-icon"></span>
+                                                    <span style="letter-spacing: 2.8px;">网关位置：</span>
+                                                </div>
+                                            </div><span style="display: block;width: 55%">${context.clusterData[0]._amapMarker.originData[0][j].address}</span></div>
+                                         <div class="gateway-item">
+                                            <div>
+                                                <div style="width: 100%;display: flex;align-items: center;">
+                                                    <span class="wangguan-device-icon"></span>
+                                                    <span style="letter-spacing: 2.8px;">设备数量：</span>
+                                                </div>
+                                            </div><span style="display: block;width: 55%">${context.clusterData[0]._amapMarker.originData[0][j].device_count}</span></div>
+                                         <div class="gateway-item"><div><div style="width: 100%;display: flex;align-items: center;"><span class="wangguan-jinjilianxiren-icon"></span><span>紧急联系人：</div></div></span><span style="display: block;width: 55%">${context.clusterData[0]._amapMarker.originData[0][j].new_emergency_call}</span></div>
+                                         <div class="gateway-item"><div><div style="width: 100%;display: flex;align-items: center;"><span class="wangguan-wanggeyuan-icon"></span><span>网格员电话：</div></div></span><span style="display: block;width: 55%">${context.clusterData[0]._amapMarker.originData[0][j].grid_member_telephone}</span></div>
                                          <div class="gateway-line"></div>
                                     </div>`;
                 }
