@@ -49,12 +49,11 @@ export default {
         },
 
         async fetchData() {
+            this.getMarkers();
             await this.getCenterPoints();
             await this.getGatewayPoint();
             this.setWebsocketLink();
-
-              
-            this.getMarkers();
+            
             this.addCluster();
         },
 
@@ -495,6 +494,7 @@ export default {
             var size = Math.round(
                 25 + Math.pow(clusterCount / count, 1 / 5) * 40
             );
+            console.log('size',size, clusterCount, count);
             div.style.width = div.style.height = size + "px";
             div.style.border = "solid 1px rgba(" + bgColor + ",1)";
             div.style.borderRadius = size / 2 + "px";
@@ -577,6 +577,7 @@ export default {
                 divToast.style.display = "block";
             });
             context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
+            console.log('div', div);
             context.marker.setContent(div);
 
             //鼠标移入弹窗禁用地图缩放

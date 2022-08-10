@@ -49,11 +49,11 @@ export default {
         },
 
         async fetchData() {
+            this.getMarkers();
             await this.getCenterPoints();
             await this.getGatewayPoint();
             this.setWebsocketLink();
-
-            this.getMarkers();
+            
             this.addCluster();
         },
 
