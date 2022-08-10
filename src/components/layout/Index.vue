@@ -178,10 +178,14 @@ export default {
             },
 
             ifFullScreen: false,
+
+            herf_url : '', //生命体征检测跳转
         };
     },
     created() {
         this.displayDate();
+
+        this.herf_url = window.herf_url;
     },
 
     mounted() {},

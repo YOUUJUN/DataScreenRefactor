@@ -623,7 +623,7 @@ export default {
                         left: "65%",
                         align: "auto",
                         // top: '35%',
-                        top: "30%",
+                        top: "10",
                         // itemWidth: 12,             // 图例图形宽度
                         // itemHeight: 12,
                         // itemGap: 20,
