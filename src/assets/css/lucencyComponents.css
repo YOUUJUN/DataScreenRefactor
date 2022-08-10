@@ -1,0 +1,196 @@
+/*---lucency-dlg---*/
+.el-dialog.lucency-dlg {
+    display: flex;
+    flex-direction: column;
+    width: 10.425rem;
+    height: 6.25rem;
+    background: none;
+    margin-top: 11vh !important;
+    box-shadow: none;
+}
+
+.el-dialog.lucency-dlg .el-dialog__header {
+    flex: none;
+    height: 0.625rem;
+    background: url("~@/static/cut/dlg-top.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 0;
+}
+
+.el-dialog.lucency-dlg .el-dialog__body {
+    flex: auto;
+    background: url("~@/static/cut/dlg-bottom.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding:.2rem;
+}
+
+/*---lucency-table---*/
+
+.lucency-table.el-table tr {
+    background: none;
+}
+
+.lucency-table.el-table th.el-table__cell {
+    background: none;
+}
+
+.el-table td.el-table__cell,
+.el-table th.el-table__cell.is-leaf {
+    border: none !important;
+}
+
+.lucency-table.el-table,
+.el-table__expanded-cell {
+    background: none;
+}
+
+.lucency-table.el-table--striped
+    .el-table__body
+    tr.el-table__row--striped
+    td.el-table__cell {
+    background: none;
+}
+
+.el-table--enable-row-hover .el-table__body tr:hover > td.el-table__cell {
+    background: none !important;
+}
+
+.lucency-table .el-table__row {
+    background-color: rgba(5, 27, 50, 0.5) !important;
+}
+
+.lucency-table .el-table__row.el-table__row--striped {
+    background: none !important;
+}
+
+.lucency-table.el-table::before {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+}
+
+.lucency-table.el-table .el-table__row {
+    color: #faaf63;
+}
+
+.lucency-table.el-table thead {
+    color: #2ad9e4;
+    font-size: 16px;
+}
+
+.lucency-table.el-table .el-table__cell {
+    padding: .05rem 0;
+}
+
+/*---lucency-page---*/
+.lucency-page.el-pagination button:disabled {
+    background: none;
+}
+
+.lucency-page.el-pagination .btn-next,
+.lucency-page.el-pagination .btn-prev {
+    background: none;
+}
+
+.el-pagination .btn-prev > i {
+    font-size: 0;
+    width: 0.225rem;
+    height: 0.225rem;
+    padding: 0.0375rem;
+    border-radius: 50%;
+    background-image: url(~@/static/Cut-diagram/pager_button_left_enable.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.lucency-page.el-pagination .btn-next > i {
+    font-size: 0;
+    width: 0.225rem;
+    height: 0.225rem;
+    padding: 0.0375rem;
+    border-radius: 50%;
+    background-image: url(~@/static/Cut-diagram/pager_button_right_enable.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.lucency-page.el-pagination .el-pager li {
+    background: none;
+}
+
+.lucency-page.el-pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #a3ccfa;
+    margin-top: 0.2rem;
+}
+
+.lucency-page.el-pagination .btn-prev:disabled > i {
+    font-size: 0;
+    background-image: url("~@/static/Cut-diagram/pager_button_left_disable.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.lucency-page.el-pagination .btn-next:disabled > i {
+    font-size: 0;
+    background-image: url("~@/static/Cut-diagram/pager_button_right_disable.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.lucency-page.el-pagination .el-pager li.active {
+	color: #faaf63;
+	cursor: default;
+}
+
+.lucency-page.el-pagination .el-pager li.btn-quicknext, .el-pager li.btn-quickprev {
+  line-height: 28px;
+  color: #a3ccfa;
+}
+
+/*---lucency-btn---*/
+.lucency-btn.el-button {
+    width: 1rem;
+    border-radius: 0.15rem;
+    border-color: transparent;
+    background-image: linear-gradient(to right, #2ad7e4, #42affe);
+    color: #fff;
+    font-size: 0.15rem;
+    cursor: pointer;
+    background-color: unset;
+    padding: 0.06rem;
+}
+
+/*---lucency-title---*/
+
+.lucency-title{
+    display: flex;
+    width:100%;
+}
+
+.lucency-title > span{
+    position: relative;
+    line-height: 0.3rem;
+    padding-left: 0.12rem;
+    font-size: .175rem;
+	font-family: Source Han Sans CN;
+	font-weight: 800;
+	color: #2AD9E4;
+}
+
+.lucency-title > span::before{
+    content: "";
+    position: absolute;
+    top: 0.04rem;
+    left: -0.0625rem;
+    width: .0625rem;
+	height: .1875rem;
+	background-image: linear-gradient(to top, #209CFF, #68E0CF);
+	border-radius: 0.02rem;
+}
