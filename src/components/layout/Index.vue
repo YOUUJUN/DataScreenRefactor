@@ -186,7 +186,6 @@ export default {
         this.displayDate();
 
         this.herf_url = window.herf_url;
-        console.log('herf_url', herf_url);
     },
 
     mounted() {},
