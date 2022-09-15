@@ -1,6 +1,7 @@
 
 import '@/utils/config'
 import Vue from 'vue'
+import store from './store'
 import Home from './Community.vue'
 import Request from '@/utils/web.js'
 import * as echarts from "echarts";
@@ -38,6 +39,7 @@ Vue.prototype.$request = Request
 Vue.config.productionTip = false;
 
 new Vue({
+  store,
   render: h => h(Home)
 }).$mount('#app');
 

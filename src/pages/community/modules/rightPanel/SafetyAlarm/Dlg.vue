@@ -58,10 +58,7 @@
 </template>
 
 <script>
-import request from "@/utils/web";
-import { postAction } from "@/api/manage";
-
-import qs from 'qs';
+import {resolveAlarmById, fetchSafetyAlarmListByPage} from "../../../api/dataSource.js"
 
 export default {
     props: {
@@ -96,17 +93,7 @@ export default {
         },
 
         getData(currentPage) {
-            request({
-                url: `/datav/fm.warning/11/${currentPage}`,
-                method: "post",
-                data: qs.stringify({
-                    alarm_type: "sec_alarm",
-                }),
-                headers: {
-                    "content-type": "application/x-www-form-urlencoded",
-                },
-            })
-                .then((res) => {
+            fetchSafetyAlarmListByPage(currentPage).then((res) => {
                     console.log("res-->", res);
                     if(res.status === 200){
                         this.tableData = res.data.warning_list
@@ -124,7 +111,7 @@ export default {
         handleDeal(scope){
             console.log('scope', scope.row);
             let {id} = scope.row
-            postAction(`/updateDetail/fm.warning/${id}`).then(res => {
+            resolveAlarmById(id).then(res => {
                 this.getData(this.currentPage)
             }).catch(err => {
                 console.log("err", err);

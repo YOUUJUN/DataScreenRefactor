@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { getAction, postAction } from "@/api/manage";
+import {fetchCenterPoints, fetchGatewayPoints} from "../api/dataSource.js"
 
 export default {
     data() {
@@ -107,8 +107,7 @@ export default {
         //获取地图渲染中心点,获取机构坐标
         getCenterPoints() {
             return new Promise((resolve, reject) => {
-                postAction(`/getCenterPoints`)
-                    .then((res) => {
+                fetchCenterPoints().then((res) => {
                         console.log("机构", res);
                         let result = res.data;
                         if (res.status === 200) {
@@ -130,8 +129,7 @@ export default {
         // 获取网关坐标
         getGatewayPoint() {
             return new Promise((resolve, reject) => {
-                postAction(`/getGatewayList`)
-                    .then((res) => {
+                fetchGatewayPoints().then((res) => {
                         console.log("网关", res);
                         let result = res.data;
                         if (res.status === 200) {

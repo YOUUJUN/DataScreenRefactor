@@ -1,8 +1,17 @@
 <template>
     <div class="card-body-inner">
         <div class="alert-wrap">
-            <ul class="alert-list" ref="list">
-                <li v-for="(item, index) of renderData">
+            <transition-group
+                name="list-complete"
+                tag="ul"
+                class="alert-list"
+                ref="list"
+            >
+                <li
+                    v-for="(item, index) of safetyAlarmList"
+                    class="list-complete-item"
+                    :key="item"
+                >
                     <div class="alert-left">
                         <img :src="item.img" />
                         <span>{{ item.alarm_style }}</span>
@@ -10,12 +19,14 @@
                     <span class="alert-center">{{ item.alarming_date }}</span>
                     <span class="alert-right">未处理</span>
                 </li>
-            </ul>
+            </transition-group>
         </div>
     </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
     data() {
         return {
@@ -26,11 +37,19 @@ export default {
     created() {
         this.initRenderData();
         this.setWebSocketLink();
+
+        this.getSafetyAllarmListPageOne();
+    },
+
+    computed: {
+        ...mapGetters(["safetyAlarmList"]),
     },
 
     mounted() {},
 
     methods: {
+        ...mapActions("data", ["getSafetyAllarmListPageOne", "addSafetyAlarm"]),
+
         //初始化渲染数据
         initRenderData() {
             let dataSource = box7;
@@ -39,13 +58,16 @@ export default {
         },
 
         updateData(info) {
-            console.log("updateData--->", info);
+            console.log("updateData--->safe", info);
             let tempObj = {
                 img: `${info.data[0].img}`,
                 alarm_style: info.data[0].alarm_style,
                 alarming_date: info.data[0].alarming_date,
                 ifNew: true,
             };
+
+            this.addSafetyAlarm(tempObj)
+            return;
 
             this.renderData.unshift(tempObj);
             let li = this.$refs.list.querySelector("li");
@@ -71,7 +93,9 @@ export default {
 
                     if (
                         obj.operation === "datav_iot_warning" &&
-                        obj.belong === "household" && obj.inst_id=== inst_id && obj.data[0].alarm_type === 'sec_alarm'
+                        obj.belong === "household" &&
+                        obj.inst_id === inst_id &&
+                        obj.data[0].alarm_type === "sec_alarm"
                     ) {
                         this.updateData(obj);
                     }
@@ -79,13 +103,14 @@ export default {
                     console.log("未实现的方法:", e.data);
                 }
             });
-
         },
     },
 };
 </script>
 
 <style scoped>
+@import url("~@/styles/list_animate.css");
+
 .card-body-inner {
     display: flex;
     flex-direction: column;
