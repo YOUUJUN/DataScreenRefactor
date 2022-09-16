@@ -6,6 +6,11 @@ import Home from './Community.vue'
 import Request from '@/utils/web.js'
 import * as echarts from "echarts";
 
+//添加 websocket
+import SocketService from '@/api/socketService'
+//触发对于服务器的socket连接
+SocketService.Instance.connect();
+
 import { Button, Dialog, Table, Pagination, Tooltip, Scrollbar } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
@@ -35,6 +40,9 @@ Vue.prototype.$echarts = echarts
 
 //axios
 Vue.prototype.$request = Request
+
+//websocket
+Vue.prototype.$socket = SocketService.Instance;
 
 Vue.config.productionTip = false;
 

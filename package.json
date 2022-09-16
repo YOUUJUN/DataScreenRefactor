@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "dev-build": "vue-cli-service build --mode devbuild",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "dev-build": "vue-cli-service build --mode devbuild"
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "core-js": "^3.4.3",
+    "core-js": "^3.8.3",
     "echarts": "^5.3.2",
     "element-ui": "^2.15.9",
     "qs": "^6.11.0",
@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@vue/cli": "^4.5.13",
+    "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-service": "^4.5.13",
     "babel-plugin-component": "^1.1.1",
     "compression-webpack-plugin": "^3.1.0",
