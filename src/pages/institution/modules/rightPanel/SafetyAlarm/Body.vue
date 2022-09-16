@@ -159,7 +159,7 @@ export default {
 
 .alert-left span {
     display: block;
-    width: 0.75rem;
+    width: 1.2rem;
     height: 0.475rem;
     line-height: 0.475rem;
     overflow: hidden;
