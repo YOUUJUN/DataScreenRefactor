@@ -39,7 +39,7 @@ const buildPageSync = () => {
             if (process.env.NODE_ENV === "development") {
                 page.filename = file.concat(".html");
             } else {
-                page.filename = "../vue-pages/".concat(file, ".html");
+                page.filename = "./".concat(file, ".html");
             }
             // page.filename = file.concat('.html');
             pages[file] = page;
@@ -118,12 +118,12 @@ let pageConstruction = buildPageSync();
 
 delete require.cache[module.id];
 
-let publicPath = process.env.NODE_ENV === 'development' ? '/' : "/fm_monitor/static/src/";
+let publicPath = process.env.NODE_ENV === 'development' ? '/' : "/fm_monitor/static/templates/default/zh_CN";
 
 module.exports = function() {
     return {
         publicPath,
-        outputDir: "./../vue-public",
+        outputDir: "./dist",
         assetsDir: "static",
         filenameHashing: true,
         pages: pageConstruction,

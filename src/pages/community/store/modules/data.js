@@ -94,7 +94,7 @@ const actions = {
     deleteSafetyAlarm({ state, commit, dispatch }, payload) {
         return new Promise((resolve, reject) => {
             commit("DELETE_SAFETY_ALARM_DATA", payload);
-            if(state.safetyAlarmList.length === 2){
+            if(state.safetyAlarmList.length === 0){
                 dispatch('getSafetyAllarmListPageOne')
             }
         });
@@ -134,7 +134,7 @@ const actions = {
     deleteDeviceAlarm({ state, commit, dispatch }, payload) {
         return new Promise((resolve, reject) => {
             commit("DELETE_DEVICE_ALARM_DATA", payload);
-            if(state.deviceAlarmList.length === 2){
+            if(state.deviceAlarmList.length === 0){
                 dispatch('getDeviceAllarmListPageOne')
             }
         });
@@ -174,7 +174,7 @@ const actions = {
     deleteHealthAlarm({ state, commit, dispatch }, payload) {
         return new Promise((resolve, reject) => {
             commit("DELETE_HEALTH_ALARM_DATA", payload);
-            if(state.healthAlarmList.length === 2){
+            if(state.healthAlarmList.length === 0){
                 dispatch('getHealthAllarmListPageOne')
             }
         });
