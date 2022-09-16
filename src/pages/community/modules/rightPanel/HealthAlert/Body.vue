@@ -1,7 +1,7 @@
 <template>
     <div class="card-body-inner">
         <div class="alert-wrap">
-            <ul class="alert-list" ref="list">
+            <!-- <ul class="alert-list" ref="list">
                 <li v-for="item of renderData">
                     <div class="alert-left">
                         <img :src="item.img" />
@@ -10,54 +10,75 @@
                     <span class="alert-center">{{ item.alarming_date }}</span>
                     <span class="alert-right">{{item.breath_hr}}</span>
                 </li>
-            </ul>
+            </ul> -->
+            <transition-group
+                name="list-complete"
+                tag="ul"
+                class="alert-list"
+                ref="list"
+            >
+                <li
+                    v-for="(item, index) of healthAlarmList"
+                    class="list-complete-item"
+                    :key="item"
+                >
+                    <div class="alert-left">
+                        <img :src="warnPic(item)" />
+                        <span>{{ item.alarm_style }}</span>
+                    </div>
+                    <span class="alert-center">{{ item.alarming_date }}</span>
+                    <span class="alert-right">{{item.breath_hr}}</span>
+                </li>
+            </transition-group>
         </div>
     </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+import { getWarnImgUrl } from "@/api/dict.js";
+
 export default {
     data() {
         return {
-            renderData: [],
         };
     },
 
     created() {
-        this.initRenderData();
         this.setWebSocketLink();
+        this.getHealthAllarmListPageOne();
+    },
+
+    computed: {
+        ...mapGetters(["healthAlarmList"]),
+
+        warnPic() {
+            return (info) => {
+                return getWarnImgUrl(info.alarm_style);
+            };
+        },
     },
 
     mounted() {},
 
     methods: {
-        //初始化渲染数据
-        initRenderData() {
-            let dataSource = box5;
-
-            this.renderData = dataSource.warning_two;
-        },
+        ...mapActions("data", ["getHealthAllarmListPageOne", "addHealthAlarm"]),
 
         updateData(info) {
-            console.log('info', info);
+            console.log("updateData--->health", info);
+            let data = info.data[0]
             let tempObj = {
-                img: `${info.data[0].img}`,
-                alarm_style: info.data[0].alarm_style,
-                alarming_date: info.data[0].alarming_date,
-                breath_hr: info.data[0].breath_hr,
+                id : data.id,
+                warning_type_name : data.warning_type_name,
+                img: '',
+                alarm_style: data.alarm_style,
+                alarming_date: data.alarming_date,
+                breath_hr: data.breath_hr,
                 ifNew: true,
             };
-            console.log('this.$refs.list', this.$refs.list);
-            this.renderData.unshift(tempObj);
-            let li = this.$refs.list.querySelector("li");
-            console.log('li', li);
-            li.classList.remove("fadeIn");
 
-            this.$nextTick(() => {
-                setTimeout(() => {
-                    li.classList.add("fadeIn");
-                }, 50);
-            });
+            this.addHealthAlarm(tempObj)
+            return;
         },
 
         setWebSocketLink() {

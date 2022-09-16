@@ -1,61 +1,75 @@
 <template>
     <div class="card-body-inner">
         <div class="alert-wrap">
-            <ul class="alert-list" ref="list">
-                <li v-for="(item, index) of renderData">
+            <transition-group
+                name="list-complete"
+                tag="ul"
+                class="alert-list"
+                ref="list"
+            >
+                <li
+                    v-for="(item, index) of safetyAlarmList"
+                    class="list-complete-item"
+                    :key="item"
+                >
                     <div class="alert-left">
-                        <img :src="item.img" />
+                        <img :src="warnPic(item)" />
                         <span>{{ item.alarm_style }}</span>
                     </div>
                     <span class="alert-center">{{ item.alarming_date }}</span>
                     <span class="alert-right">未处理</span>
                 </li>
-            </ul>
+            </transition-group>
         </div>
     </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+import { getWarnImgUrl } from "@/api/dict.js";
+
 export default {
     data() {
         return {
-            renderData: [],
+
         };
     },
 
     created() {
-        this.initRenderData();
         this.setWebSocketLink();
+
+        this.getSafetyAllarmListPageOne();
+    },
+
+    computed: {
+        ...mapGetters(["safetyAlarmList"]),
+
+        warnPic() {
+            return (info) => {
+                return getWarnImgUrl(info.alarm_style);
+            };
+        },
     },
 
     mounted() {},
 
     methods: {
-        //初始化渲染数据
-        initRenderData() {
-            let dataSource = box7;
-
-            this.renderData = dataSource.warning_two;
-        },
+        ...mapActions("data", ["getSafetyAllarmListPageOne", "addSafetyAlarm"]),
 
         updateData(info) {
-            console.log("updateData--->", info);
+            console.log("updateData--->safe", info);
+            let data = info.data[0]
             let tempObj = {
-                img: `${info.data[0].img}`,
-                alarm_style: info.data[0].alarm_style,
-                alarming_date: info.data[0].alarming_date,
+                id : data.id,
+                warning_type_name : data.warning_type_name,
+                img: '',
+                alarm_style: data.alarm_style,
+                alarming_date: data.alarming_date,
                 ifNew: true,
             };
 
-            this.renderData.unshift(tempObj);
-            let li = this.$refs.list.querySelector("li");
-            li.classList.remove("fadeIn");
-
-            this.$nextTick(() => {
-                setTimeout(() => {
-                    li.classList.add("fadeIn");
-                }, 50);
-            });
+            this.addSafetyAlarm(tempObj)
+            return;
         },
 
         setWebSocketLink() {
@@ -71,7 +85,9 @@ export default {
 
                     if (
                         obj.operation === "datav_iot_warning" &&
-                        obj.belong === "nursing" && obj.inst_id=== inst_id && obj.data[0].alarm_type === 'sec_alarm'
+                        obj.belong === "household" &&
+                        obj.inst_id === inst_id &&
+                        obj.data[0].alarm_type === "sec_alarm"
                     ) {
                         this.updateData(obj);
                     }
@@ -79,13 +95,14 @@ export default {
                     console.log("未实现的方法:", e.data);
                 }
             });
-
         },
     },
 };
 </script>
 
 <style scoped>
+@import url("~@/styles/list_animate.css");
+
 .card-body-inner {
     display: flex;
     flex-direction: column;

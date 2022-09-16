@@ -59,6 +59,7 @@
 
 <script>
 import {resolveAlarmById, fetchHealthAlarmListByPage} from "../../../api/dataSource.js"
+import { mapActions } from "vuex";
 
 export default {
     props: {
@@ -88,6 +89,8 @@ export default {
     },
     
     methods: {
+        ...mapActions("data", ["deleteHealthAlarm"]),
+        
         handleClose() {
             this.$emit("update:visible", false);
         },
@@ -111,9 +114,8 @@ export default {
             console.log('scope', scope.row);
             let {id} = scope.row
             resolveAlarmById(id).then(res => {
-                // let index = this.tableData.findIndex(data => data.id === id);
-                // this.tableData.splice(index, 1);
                 this.getData(this.currentPage)
+                this.deleteHealthAlarm({id})
             }).catch(err => {
                 console.log("err", err);
             })

@@ -77,6 +77,7 @@ import {
     resolveAlarmById,
     fetchDeviceAlarmListByPage,
 } from "../../../api/dataSource.js";
+import { mapActions } from "vuex";
 
 export default {
     props: {
@@ -106,6 +107,8 @@ export default {
     },
 
     methods: {
+        ...mapActions("data", ["deleteDeviceAlarm"]),
+
         handleClose() {
             this.$emit("update:visible", false);
         },
@@ -132,9 +135,8 @@ export default {
             let { id } = scope.row;
             resolveAlarmById(id)
                 .then((res) => {
-                    // let index = this.tableData.findIndex(data => data.id === id);
-                    // this.tableData.splice(index, 1);
                     this.getData(this.currentPage);
+                    this.deleteDeviceAlarm({id})
                 })
                 .catch((err) => {
                     console.log("err", err);

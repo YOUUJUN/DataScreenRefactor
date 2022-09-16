@@ -18,7 +18,6 @@
                     class="card-head-inner-more"
                     src="~@/static/Cut-diagram/guanbi.png"
                 />
-                
             </div>
         </template>
 
@@ -28,11 +27,26 @@
             :stripe="true"
             style="width: 100%"
         >
-            <el-table-column prop="create_date" label="告警时间" width="150" align="center">
+            <el-table-column
+                prop="create_date"
+                label="告警时间"
+                width="150"
+                align="center"
+            >
             </el-table-column>
-            <el-table-column prop="alarm_style" label="告警类型" width="280" align="center">
+            <el-table-column
+                prop="alarm_style"
+                label="告警类型"
+                width="280"
+                align="center"
+            >
             </el-table-column>
-            <el-table-column prop="device_address" label="设备地址" width="auto" :show-overflow-tooltip="true">
+            <el-table-column
+                prop="device_address"
+                label="设备地址"
+                width="auto"
+                :show-overflow-tooltip="true"
+            >
             </el-table-column>
             <el-table-column label="操作" width="100" align="center">
                 <template slot-scope="scope">
@@ -58,7 +72,12 @@
 </template>
 
 <script>
-import {resolveAlarmById, fetchSafetyAlarmListByPage} from "../../../api/dataSource.js"
+import {
+    resolveAlarmById,
+    fetchSafetyAlarmListByPage,
+} from "../../../api/dataSource.js";
+
+import { mapActions } from "vuex";
 
 export default {
     props: {
@@ -71,35 +90,38 @@ export default {
     data() {
         return {
             tableData: [],
-            totalPage : 0,
-            currentPage : 1,
+            totalPage: 0,
+            currentPage: 1,
         };
     },
 
-    watch : {
-        visible : {
-            immediate : true,
-            handler(newValue){
-                if(newValue === true){
+    watch: {
+        visible: {
+            immediate: true,
+            handler(newValue) {
+                if (newValue === true) {
                     this.getData(1);
                 }
-            }
-        }
+            },
+        },
     },
 
     methods: {
+        ...mapActions("data", ["deleteSafetyAlarm"]),
+
         handleClose() {
             this.$emit("update:visible", false);
         },
 
         getData(currentPage) {
-            fetchSafetyAlarmListByPage(currentPage).then((res) => {
+            fetchSafetyAlarmListByPage(currentPage)
+                .then((res) => {
                     console.log("res-->", res);
-                    if(res.status === 200){
-                        this.tableData = res.data.warning_list
-                        let totalPage = Math.ceil(res.data.search_count / 11)
-                        console.log('totalPage', totalPage);
-                        this.totalPage = totalPage
+                    if (res.status === 200) {
+                        this.tableData = res.data.warning_list;
+                        let totalPage = Math.ceil(res.data.search_count / 11);
+                        console.log("totalPage", totalPage);
+                        this.totalPage = totalPage;
                     }
                 })
                 .catch((err) => {
@@ -108,16 +130,20 @@ export default {
         },
 
         //立即处理
-        handleDeal(scope){
-            console.log('scope', scope.row);
-            let {id} = scope.row
-            resolveAlarmById(id).then(res => {
-                this.getData(this.currentPage)
-            }).catch(err => {
-                console.log("err", err);
-            })
-        }
-
+        handleDeal(scope) {
+            console.log("scope", scope.row);
+            let { id } = scope.row;
+            resolveAlarmById(id)
+                .then((res) => {
+                    if (res.status === 200) {
+                        this.getData(this.currentPage);
+                        this.deleteSafetyAlarm({id})
+                    }
+                })
+                .catch((err) => {
+                    console.log("err", err);
+                });
+        },
     },
 };
 </script>
@@ -145,7 +171,7 @@ export default {
     font-size: 0.25rem;
 }
 
-.card-head-inner-more{
-    cursor:pointer;
+.card-head-inner-more {
+    cursor: pointer;
 }
 </style>

@@ -1,63 +1,75 @@
 <template>
     <div class="card-body-inner">
         <div class="alert-wrap">
-            <ul class="alert-list" ref="list">
-                <li v-for="item of renderData">
+            <transition-group
+                name="list-complete"
+                tag="ul"
+                class="alert-list"
+                ref="list"
+            >
+                <li
+                    v-for="(item, index) of deviceAlarmList"
+                    class="list-complete-item"
+                    :key="item"
+                >
                     <div class="alert-left">
-                        <img :src="item.img" />
+                        <img :src="warnPic(item)" />
                         <span>{{ item.device_name }}</span>
                     </div>
                     <span class="alert-center">{{ item.alarming_date }}</span>
                     <span class="alert-right">离线</span>
                 </li>
-            </ul>
+            </transition-group>
         </div>
     </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+import { getWarnImgUrl } from "@/api/dict.js";
+
 export default {
     data() {
         return {
-            renderData: [],
+
         };
     },
 
     created() {
-        this.initRenderData();
         this.setWebSocketLink();
+        this.getDeviceAllarmListPageOne();
+    },
+
+    computed: {
+        ...mapGetters(["deviceAlarmList"]),
+
+        warnPic() {
+            return (info) => {
+                return getWarnImgUrl(info.alarm_style);
+            };
+        },
     },
 
     mounted() {},
 
     methods: {
-        //初始化渲染数据
-        initRenderData() {
-            let dataSource = box6;
-
-            this.renderData = dataSource.warning_two;
-        },
+        ...mapActions("data", ["getDeviceAllarmListPageOne", "addDeviceAlarm"]),
 
         updateData(info) {
-            console.log("obj-->2 in1", info);
+            console.log("updateData--->device", info);
+            let data = info.data[0]
             let tempObj = {
-                img: `/fm_monitor/static/warning/${info.data[0].img}`,
-                device_name: info.data[0].device_name,
-                alarming_date: info.data[0].alarming_date,
+                id : data.id,
+                warning_type_name : data.warning_type_name,
+                img: '',
+                device_name: data.device_name,
+                alarm_style: data.alarm_style,
+                alarming_date: data.alarming_date,
                 ifNew: true,
             };
 
-            console.log("obj-->2 in", tempObj);
-
-            this.renderData.unshift(tempObj);
-            let li = this.$refs.list.querySelector("li");
-            li.classList.remove("fadeIn");
-
-            this.$nextTick(() => {
-                setTimeout(() => {
-                    li.classList.add("fadeIn");
-                }, 50);
-            });
+            this.addDeviceAlarm(tempObj)
+            return;
         },
 
         setWebSocketLink() {
@@ -72,7 +84,7 @@ export default {
 
                     if (
                         obj.operation === "datav_iot_warning" &&
-                        obj.belong === "nursing" && obj.inst_id=== inst_id && obj.data[0].alarm_type === 'equ_alarm'
+                        obj.belong === "household" && obj.inst_id=== inst_id && obj.data[0].alarm_type === 'equ_alarm'
                     ) {
                         console.log("obj-->2 ok");
                         this.updateData(obj);
