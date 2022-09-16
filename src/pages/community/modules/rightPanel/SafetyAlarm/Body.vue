@@ -118,6 +118,7 @@ export default {
 }
 
 .alert-list {
+    position: relative;
     display: flex;
     width: 100%;
     height: 1.175rem;
