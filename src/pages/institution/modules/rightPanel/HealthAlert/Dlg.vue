@@ -29,9 +29,9 @@
         >
             <el-table-column prop="create_date" label="告警时间" width="150" align="center">
             </el-table-column>
-            <el-table-column prop="alarm_style" label="告警类型" width="140" align="center">
+            <el-table-column prop="alarm_style" label="告警类型" width="90" align="center">
             </el-table-column>
-            <el-table-column prop="partner_name" label="设备用户" width="auto" align="center">
+            <el-table-column prop="partner_name" label="设备用户" width="90" align="center">
             </el-table-column>
             <el-table-column prop="msg_text" label="告警文本" width="auto">
             </el-table-column>
