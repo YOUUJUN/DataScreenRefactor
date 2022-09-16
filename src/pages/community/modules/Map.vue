@@ -7,6 +7,7 @@
 
 <script>
 import {fetchCenterPoints, fetchGatewayPoints} from "../api/dataSource.js"
+import { getAudioUrl } from "@/api/dict.js";
 
 export default {
     data() {
@@ -163,7 +164,7 @@ export default {
                         //语音告警
                         console.log("alarm_style", obj.data[0].alarm_style);
                         if (obj.data[0].alarm_style != "device") {
-                            this.doTalk(obj.data[0].audio_url);
+                            this.doTalk(getAudioUrl(obj.data[0].audio_name));
                         }
 
                         this.mapWarningMarkersArr.push(
