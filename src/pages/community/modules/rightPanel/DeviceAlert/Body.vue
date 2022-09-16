@@ -98,6 +98,8 @@ export default {
 </script>
 
 <style scoped>
+@import url("~@/styles/list_animate.css");
+
 .card-body-inner {
     display: flex;
     flex-direction: column;
