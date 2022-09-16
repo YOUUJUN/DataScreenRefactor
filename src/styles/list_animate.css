@@ -6,8 +6,9 @@
 .list-complete-enter, .list-complete-leave-to
 /* .list-complete-leave-active for below version 2.1.8 */ {
     opacity: 0;
-    transform: translateY(-3rem);
+    transform: translateY(-0.5rem);
 }
 .list-complete-leave-active {
     position: absolute;
+    z-index: -1;
 }
