@@ -82,8 +82,7 @@ export default {
         },
 
         setWebSocketLink() {
-            let ws = new WebSocket(this.$websSite);
-            ws.addEventListener("message", (e) => {
+            this.$socket.registerCallBack("handleHealthAlarm", (e) => {
                 console.log("e--->", e);
                 try {
                     let obj = JSON.parse(e.data);
@@ -101,7 +100,7 @@ export default {
                 } catch (err) {
                     console.log("未实现的方法:", e.data);
                 }
-            });
+            })
         },
     },
 };

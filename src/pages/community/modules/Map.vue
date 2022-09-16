@@ -147,8 +147,7 @@ export default {
 
         //建立websocket连接
         setWebsocketLink() {
-            let ws = new WebSocket(this.$websSite);
-            ws.onmessage = (e) => {
+            this.$socket.registerCallBack("handleMapAlarm", (e) => {
                 if (typeof e.data !== "string") {
                     return;
                 }
@@ -208,7 +207,7 @@ export default {
                 } catch (err) {
                     console.log("未实现的方法:", e.data);
                 }
-            };
+            })
         },
 
         // 标记机构中心点

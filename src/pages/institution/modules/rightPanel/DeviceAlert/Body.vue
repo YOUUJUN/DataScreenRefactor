@@ -73,8 +73,7 @@ export default {
         },
 
         setWebSocketLink() {
-            let ws = new WebSocket(this.$websSite);
-            ws.onmessage =  (e) => {
+            this.$socket.registerCallBack("handleDeviceAlarm", (e) => {
                 try {
                     let obj = JSON.parse(e.data);
                     console.log("obj-->2", obj);
@@ -84,7 +83,7 @@ export default {
 
                     if (
                         obj.operation === "datav_iot_warning" &&
-                        obj.belong === "household" && obj.inst_id=== inst_id && obj.data[0].alarm_type === 'equ_alarm'
+                        obj.belong === "nursing" && obj.inst_id=== inst_id && obj.data[0].alarm_type === 'equ_alarm'
                     ) {
                         console.log("obj-->2 ok");
                         this.updateData(obj);
@@ -92,7 +91,7 @@ export default {
                 } catch (err) {
                     console.log("未实现的方法:", e.data);
                 }
-            };
+            })
         },
     },
 };

@@ -73,8 +73,7 @@ export default {
         },
 
         setWebSocketLink() {
-            let ws = new WebSocket(this.$websSite);
-            ws.onmessage =  (e) => {
+            this.$socket.registerCallBack("handleDeviceAlarm", (e) => {
                 try {
                     let obj = JSON.parse(e.data);
                     console.log("obj-->2", obj);
@@ -92,7 +91,7 @@ export default {
                 } catch (err) {
                     console.log("未实现的方法:", e.data);
                 }
-            };
+            })
         },
     },
 };
