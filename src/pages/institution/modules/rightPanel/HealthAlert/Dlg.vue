@@ -35,8 +35,6 @@
             </el-table-column>
             <el-table-column prop="msg_text" label="告警文本" width="auto">
             </el-table-column>
-            <el-table-column prop="device_address" label="设备地址" width="auto">
-            </el-table-column>
             <el-table-column label="操作" width="100" align="center">
                 <template slot-scope="scope">
                     <el-button size="mini" class="lucency-btn" @click="handleDeal(scope)"
