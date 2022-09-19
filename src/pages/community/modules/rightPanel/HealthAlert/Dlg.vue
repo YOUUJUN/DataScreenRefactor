@@ -11,7 +11,7 @@
             <div class="lucency-dlg-title">
                 <div class="title-left">
                     <i class="custom-icon custom-icon-youshuangjiantou"></i>
-                    <span>设备预警</span>
+                    <span>健康预警</span>
                 </div>
                 <img
                     @click="handleClose()"
@@ -29,9 +29,9 @@
         >
             <el-table-column prop="create_date" label="告警时间" width="150" align="center">
             </el-table-column>
-            <el-table-column prop="alarm_style" label="告警类型" width="90" align="center">
+            <el-table-column prop="alarm_style" label="告警类型" width="140" align="center">
             </el-table-column>
-            <el-table-column prop="partner_name" label="设备用户" width="90" align="center">
+            <el-table-column prop="partner_name" label="设备用户" width="180" align="center">
             </el-table-column>
             <el-table-column prop="msg_text" label="告警文本" width="auto">
             </el-table-column>

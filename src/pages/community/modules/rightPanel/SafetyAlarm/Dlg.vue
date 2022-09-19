@@ -11,7 +11,7 @@
             <div class="lucency-dlg-title">
                 <div class="title-left">
                     <i class="custom-icon custom-icon-youshuangjiantou"></i>
-                    <span>设备预警</span>
+                    <span>安全告警</span>
                 </div>
                 <img
                     @click="handleClose()"
