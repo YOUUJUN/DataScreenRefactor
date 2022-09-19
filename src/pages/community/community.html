@@ -18,7 +18,7 @@
 </noscript>
 <div id="app"></div>
 
-<script>var box1 = {'people_count': 8, 'nursing_count': 0, 'bed_count': 8, 'rate': '100.00%', 'male_rate': '75.00', 'female_rate': '25.00', 'mursing_ratio': 0, 'male_list': [0, 2, 0, 0, 1, 1], 'female_list': [2, 0, 0, 0, 0, 0], 'elderly_type_list': [{'name': '独居老人', 'value': 1}, {'name': '空巢老人', 'value': 3}, {'name': '五保老人', 'value': 2}, {'name': '残疾老人', 'value': 1}, {'name': '普通老人', 'value': 1}, {'name': '失能老人', 'value': 2}, {'name': '半失能老人', 'value': 0}], 'res': {'other': 4, '残疾老人': 1, '普通老人': 1, '五保老人': 2, '失能老人': 2, '半失能老人': 0, '独居老人': 1, '空巢老人': 3}}
+<!-- <script>var box1 = {'people_count': 8, 'nursing_count': 0, 'bed_count': 8, 'rate': '100.00%', 'male_rate': '75.00', 'female_rate': '25.00', 'mursing_ratio': 0, 'male_list': [0, 2, 0, 0, 1, 1], 'female_list': [2, 0, 0, 0, 0, 0], 'elderly_type_list': [{'name': '独居老人', 'value': 1}, {'name': '空巢老人', 'value': 3}, {'name': '五保老人', 'value': 2}, {'name': '残疾老人', 'value': 1}, {'name': '普通老人', 'value': 1}, {'name': '失能老人', 'value': 2}, {'name': '半失能老人', 'value': 0}], 'res': {'other': 4, '残疾老人': 1, '普通老人': 1, '五保老人': 2, '失能老人': 2, '半失能老人': 0, '独居老人': 1, '空巢老人': 3}}
   var box2 = {'health_monitoring': {'xData': ['心率异常', '呼吸异常', '翻身护理'], 'yData': [42, 794, 0]}, 'health_warning': {'xData': ['心率异常', '呼吸异常', '翻身护理'], 'yData': [42, 794, 0]}, 'health_error': [{'name': '心率异常', 'value': 42}, {'name': '呼吸异常', 'value': 794}, {'name': '翻身护理', 'value': 0}], 'health_count': {'xData': ['血压检测', '血糖检测', '心率检测', '呼吸检测', '体温检测'], 'yData': [0, 0, 0, 0, 0]}, 'detect_rate': [{'name': '血压检测', 'value': 0}, {'name': '血糖检测', 'value': 0}, {'name': '心率检测', 'value': 0}, {'name': '呼吸检测', 'value': 0}, {'name': '体温检测', 'value': 0}]}
   var box3 = {'list': ['跌倒警告', '燃气警告', '烟雾警告', '水流异常', '用水异常', '离床未归', '紧急呼叫'], 'list_x': [17, 14, 31, 1, 15, 3221, 30], 'list_y': [17, 14, 31, 1, 15, 3221, 30], 'ring_chart': [{'value': 17, 'name': '跌倒警告'}, {'value': 14, 'name': '燃气警告'}, {'value': 31, 'name': '烟雾警告'}, {'value': 1, 'name': '水流异常'}, {'value': 15, 'name': '用水异常'}, {'value': 3221, 'name': '离床未归'}, {'value': 30, 'name': '紧急呼叫'}]}
   var box4 = {'total_warning_count': 4220, 'total_state_treated_count': 4149, 'total_state_untreated_count': 71, 'gateway_count': 4, 'device_count': 40, 'today_warning_count': 7, 'state_treated_count': 0, 'state_untreated_count': 7, 'state_equ_alarm_count': 0, 'state_online_count': 38, 'state_offline_count': 2, 'device_rate': '95.00', 'msg_level_one_alarm_count': 136, 'msg_level_two_alarm_count': 4056}
@@ -40,28 +40,22 @@
 
 <script>
   var inst_id = 1
-  var herf_url = ''
-</script>
+  var serverRender = {herf_url : ''}
+</script> -->
 
 
 
 
-<!-- <script>
+<script>
+  var inst_id = {{ inst_id }}
+  var serverRender = {{ object }}
   var box1 = {{ object.box1 }}
   var box2 = {{ object.box2 }}
   var box3 = {{ object.box3 }}
   var box4 = {{ object.box4 }}
-  var box5 = {{ object.box5 }}
-  var box6 = {{ object.box6 }}
-  var box7 = {{ object.box7 }}
   var box8 = {{ object.box8 }}
   var points = {{ object.points }}
 </script>
-
-<script>
-  var inst_id = {{ inst_id }}
-  var herf_url = '{{ object.herf_url }}'
-</script> -->
 
 
 <!-- amap -->

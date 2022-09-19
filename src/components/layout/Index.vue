@@ -184,11 +184,12 @@ export default {
     },
     created() {
         this.displayDate();
-
-        this.herf_url = window.herf_url;
+        this.herf_url = serverRender.herf_url;
     },
 
-    mounted() {},
+    mounted() {
+        
+    },
     methods: {
         displayDate() {
             let date = new Date();
