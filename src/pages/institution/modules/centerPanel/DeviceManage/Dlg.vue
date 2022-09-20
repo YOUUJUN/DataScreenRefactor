@@ -718,7 +718,8 @@ export default {
 
 .fingernail {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    align-items: center;
     width: 1.75rem;
     height: 0.6375rem;
 }
@@ -731,6 +732,7 @@ export default {
 .fingernail-right {
     display: flex;
     flex-direction: column;
+    margin-left: .13rem;
 }
 
 .fingernail-right .p1 {
