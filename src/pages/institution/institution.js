@@ -1,6 +1,7 @@
 
 import '@/utils/config'
 import Vue from 'vue'
+import store from './store'
 import Home from './Institution.vue'
 import Request from '@/utils/web.js'
 import * as echarts from "echarts";
@@ -46,6 +47,7 @@ Vue.prototype.$socket = SocketService.Instance;
 Vue.config.productionTip = false;
 
 new Vue({
+  store,
   render: h => h(Home)
 }).$mount('#app');
 
