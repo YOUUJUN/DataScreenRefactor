@@ -52,10 +52,10 @@ const buildPageSync = () => {
 const cdnBaseHttp = "https://cdn.jsdelivr.net/npm";
 
 let externalConfig = [
-    { name: "vue", scope: "Vue", js: "vue.min.js" },
+    // { name: "vue", scope: "Vue", js: "vue.min.js" },
     // { name: "vue-router", scope: "VueRouter", js: "vue-router.min.js" },
     // { name: "vuex", scope: "Vuex", js: "vuex.min.js" },
-    { name: "axios", scope: "axios", js: "axios.min.js" },
+    // { name: "axios", scope: "axios", js: "axios.min.js" },
     // {name : 'axios', scope: 'axios', js: 'axios.min.js', includes:['test']}
 ];
 
