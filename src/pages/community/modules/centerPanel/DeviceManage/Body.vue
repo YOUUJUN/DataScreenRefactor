@@ -31,10 +31,12 @@ export default {
                     borderColor: "#02A6FF",
                     backgroundColor: "rgba(18, 56, 95, 0.8)",
                     formatter: function (params) {
+                        console.log('params', params)
                         let deviceName = params[0]?.axisValue ?? '';
-                        let total = params[0]?.value ?? 0 + params[1]?.value ?? 0;
+                        let total = (params[0]?.value ?? 0) + (params[1]?.value ?? 0);
                         let normal = params[0]?.value ?? '';
                         let offline = params[1]?.value ?? '';
+                        console.log('total', total, params[0]?.value ?? 0, params[1]?.value ?? 0)
                         let str = `<div style="padding:5px 20px 5px 20px;">
                 <div style="color:#2AD9E4;text-align:center;font-size:12px">${
                     deviceName
