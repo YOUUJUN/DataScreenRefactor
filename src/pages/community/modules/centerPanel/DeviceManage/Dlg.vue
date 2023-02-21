@@ -242,18 +242,22 @@ export default {
                     borderColor: "#02A6FF",
                     backgroundColor: "rgba(18, 56, 95, 0.8)",
                     formatter: function (params) {
+                        let deviceName = (params[0]?.axisValue) ?? '';
+                        let total = (params[0]?.value ?? 0) + (params[1]?.value ?? 0);
+                        let normal = (params[0]?.value) ?? '';
+                        let offline = (params[1]?.value) ?? '';
                         let str = `<div style="padding:5px 20px 5px 20px;">
                 <div style="color:#2AD9E4;text-align:center;font-size:12px">${
-                    params[1].axisValue
+                    deviceName
                 }</div>
                 <div style="width:100%;color:#A3CCFA;font-size:12px;display:flex;justify-content:center;align-items:center;"><span style="width:4px;height:4px;background:#A3CCFA;display:block;margin-right:5px;"></span>总数：${
-                    params[0].value + params[1].value
+                    total
                 }</div>
                 <div style="width:100%;color:#A3CCFA;font-size:12px;display:flex;justify-content:center;align-items:center;"><span style="width:4px;height:4px;background:#02FFDE;display:block;margin-right:5px;"></span>正常：${
-                    params[0].value
+                    normal
                 }</div>
                 <div style="width:100%;color:#A3CCFA;font-size:12px;display:flex;justify-content:center;align-items:center;"><span style="width:4px;height:4px;background:#FFD725;display:block;margin-right:5px;"></span>离线：${
-                    params[1].value
+                    offline
                 }</div>
                 </div>`;
                         return str;
