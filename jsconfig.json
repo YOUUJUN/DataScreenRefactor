@@ -1,0 +1,47 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "baseUrl": "./",
+        "paths": {
+            "@": [
+                "src"
+            ],
+            "@/*": [
+                "src/*"
+            ],
+            "vue$": [
+                "vue\\dist\\vue.runtime.esm.js"
+            ],
+            "vue$/*": [
+                "vue\\dist\\vue.runtime.esm.js/*"
+            ],
+            "@assets": [
+                "src\\assets"
+            ],
+            "@assets/*": [
+                "src\\assets/*"
+            ],
+            "@components": [
+                "src\\components"
+            ],
+            "@components/*": [
+                "src\\components/*"
+            ],
+            "@views": [
+                "src\\views"
+            ],
+            "@views/*": [
+                "src\\views/*"
+            ],
+            "@store": [
+                "src\\store"
+            ],
+            "@store/*": [
+                "src\\store/*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

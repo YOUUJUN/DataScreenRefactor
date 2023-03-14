@@ -16,6 +16,7 @@ const path = require("path");
 const webpack = require("webpack");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const AliasPlugin = require("alias-jsconfig-webpack-plugin");
 
 const productionGzipExtensions = ["js", "css"];
 const buildPageSync = () => {
@@ -208,6 +209,15 @@ module.exports = function() {
                         analyzerPort: "auto",
                     })
                 )
+            );
+
+            //读取alias配置添加到jsconfig.json
+            config.plugin("alias").use(
+                new AliasPlugin({
+                    language: "js", // or 'ts'
+                    jsx: true, // default to true,
+                    indentation: 4, // default to 4, the indentation of jsconfig.json file
+                })
             );
 
             //优化moment 去掉国际化内容；
